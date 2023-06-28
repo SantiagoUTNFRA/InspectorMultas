@@ -135,7 +135,7 @@
             // 
             iconPictureBox3.BackColor = Color.DimGray;
             iconPictureBox3.ForeColor = SystemColors.ControlText;
-            iconPictureBox3.IconChar = FontAwesome.Sharp.IconChar.Check;
+            iconPictureBox3.IconChar = FontAwesome.Sharp.IconChar.TimesRectangle;
             iconPictureBox3.IconColor = SystemColors.ControlText;
             iconPictureBox3.IconFont = FontAwesome.Sharp.IconFont.Auto;
             iconPictureBox3.IconSize = 42;
@@ -223,7 +223,6 @@
             Name = "MainUI";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Subir información";
-            Load += Form1_Load;
             panel1.ResumeLayout(false);
             panel2.ResumeLayout(false);
             panel2.PerformLayout();

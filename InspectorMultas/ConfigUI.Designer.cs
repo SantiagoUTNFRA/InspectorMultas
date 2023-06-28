@@ -259,7 +259,6 @@
             Name = "ConfigUI";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "ConfigUI";
-            Load += ConfigUI_Load;
             panel1.ResumeLayout(false);
             panel2.ResumeLayout(false);
             panel2.PerformLayout();

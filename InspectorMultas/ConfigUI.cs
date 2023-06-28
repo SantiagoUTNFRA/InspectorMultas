@@ -5,13 +5,25 @@ namespace InspectorMultas
     public partial class ConfigUI : Form
     {
         private string sshHostKeyFingerPrint = "ssh-rsa 2048 isZ3ChcOljIL3Xn+WufO5yXBs0qSCwWQX/9BmpPEjFM";
+        private static ConfigUI _instance = null!;
 
-        public ConfigUI()
+        private ConfigUI()
         {
             InitializeComponent();
         }
 
-        private void ConfigUI_Load(object sender, EventArgs e) { }
+        public static ConfigUI Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    _instance = new ConfigUI();
+                }
+
+                return _instance;
+            }
+        }
 
         private void btnSaveChanges_Click(object sender, EventArgs e)
         {
@@ -41,9 +53,8 @@ namespace InspectorMultas
 
         private void btnHome_Click(object sender, EventArgs e)
         {
-            this.Close();
-            MainUI mainUI = new();
-            mainUI.Show();
+            this.Hide();
+            MainUI.Instance.Show();
         }
 
         private bool ValidateInputs()

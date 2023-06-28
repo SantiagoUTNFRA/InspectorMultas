@@ -5,22 +5,23 @@ namespace InspectorMultas
 {
     public class TransferenciaFtp
     {
+        public static string ConfigFilePath { get; } = "appsettings.json";
         private SftpConfig _config;
         private const string RemotePath = "/sin_primitiva/test/";
-        public static string ConfigFilePath { get; } = "appsettings.json";
 
         public TransferenciaFtp()
         {
             if (!File.Exists(ConfigFilePath))
             {
-                SftpConfig defaultConfig = new SftpConfig()
+                SftpConfig defaultConfig = new()
                 {
                     Protocol = Protocol.Sftp,
                     HostName = "da750eaf9bb4.sn.mynetname.net",
                     UserName = "srv04",
                     Password = "vialcontrol1",
                     PortNumber = 10022,
-                    SshHostKeyFingerprint = "ssh-rsa 2048 isZ3ChcOljIL3Xn+WufO5yXBs0qSCwWQX/9BmpPEjFM"
+                    SshHostKeyFingerprint = "ssh-rsa 2048 isZ3ChcOljIL3Xn+WufO5yXBs0qSCwWQX/9BmpPEjFM",
+                    RemotePath = "/sin_primitiva/test/"
                 };
                 SaveConfiguration(defaultConfig);
                 _config = defaultConfig;
@@ -29,7 +30,7 @@ namespace InspectorMultas
             {
                 using (StreamReader file = File.OpenText(ConfigFilePath))
                 {
-                    Newtonsoft.Json.JsonSerializer serializer = new Newtonsoft.Json.JsonSerializer();
+                    JsonSerializer serializer = new JsonSerializer();
                     var sftpConfig = (SftpConfig)serializer.Deserialize(file, typeof(SftpConfig))!;
                     _config = sftpConfig;
                 }
@@ -38,16 +39,15 @@ namespace InspectorMultas
 
         public void SaveConfiguration(SftpConfig sftpConfig)
         {
-            string json = JsonConvert.SerializeObject(sftpConfig, Newtonsoft.Json.Formatting.Indented);
+            string json = JsonConvert.SerializeObject(sftpConfig, Formatting.Indented);
 
             using (StreamWriter sw = new StreamWriter(ConfigFilePath))
             {
                 sw.Write(json);
             }
 
-            _config = sftpConfig; // Update the current configuration
+            _config = sftpConfig;
         }
-
 
         public void RealizarTransferencia(string directorioOrigen)
         {
@@ -72,12 +72,12 @@ namespace InspectorMultas
                 };
 
                 TransferOperationResult transferResult;
-                transferResult = session.PutFiles(directorioOrigen + "\\*", RemotePath, false, transferOptions);
+                transferResult = session.PutFiles(Path.Combine(directorioOrigen, "*"), RemotePath, false, transferOptions);
 
                 // Verificar errores
                 transferResult.Check();
 
-                string logFilePath = directorioOrigen + "\\transferencias.txt";
+                string logFilePath = Path.Combine(directorioOrigen, "transferencias.txt");
 
                 // Mostrar resultados
                 using (StreamWriter streamWriter = new(logFilePath, true))
