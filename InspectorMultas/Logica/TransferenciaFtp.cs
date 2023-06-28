@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using WinSCP;
 
-namespace InspectorMultas
+namespace InspectorMultas.Logica
 {
     public class TransferenciaFtp
     {
@@ -41,7 +41,7 @@ namespace InspectorMultas
         {
             string json = JsonConvert.SerializeObject(sftpConfig, Formatting.Indented);
 
-            using (StreamWriter sw = new StreamWriter(ConfigFilePath))
+            using (StreamWriter sw = new(ConfigFilePath))
             {
                 sw.Write(json);
             }

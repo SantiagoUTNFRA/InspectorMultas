@@ -1,4 +1,5 @@
-﻿using WinSCP;
+﻿using InspectorMultas.Logica;
+using WinSCP;
 
 namespace InspectorMultas
 {

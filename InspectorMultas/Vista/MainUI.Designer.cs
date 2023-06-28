@@ -40,39 +40,43 @@
             label3 = new Label();
             label2 = new Label();
             label1 = new Label();
+            panel3 = new Panel();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)iconPictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)iconPictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)iconPictureBox1).BeginInit();
+            panel3.SuspendLayout();
             SuspendLayout();
             // 
             // lblTitulo
             // 
             lblTitulo.AutoSize = true;
-            lblTitulo.Font = new Font("Segoe UI Semibold", 18F, FontStyle.Bold, GraphicsUnit.Point);
-            lblTitulo.ForeColor = Color.White;
-            lblTitulo.Location = new Point(417, 9);
+            lblTitulo.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point);
+            lblTitulo.ForeColor = Color.FromArgb(20, 25, 25);
+            lblTitulo.Location = new Point(310, 25);
             lblTitulo.Name = "lblTitulo";
-            lblTitulo.Size = new Size(184, 32);
+            lblTitulo.Size = new Size(194, 32);
             lblTitulo.TabIndex = 1;
             lblTitulo.Text = "Vial Control S.A";
             // 
             // btnStartTransfer
             // 
-            btnStartTransfer.Dock = DockStyle.Top;
+            btnStartTransfer.Dock = DockStyle.Bottom;
             btnStartTransfer.FlatStyle = FlatStyle.Popup;
-            btnStartTransfer.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            btnStartTransfer.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point);
             btnStartTransfer.ForeColor = Color.White;
             btnStartTransfer.IconChar = FontAwesome.Sharp.IconChar.Play;
             btnStartTransfer.IconColor = Color.DimGray;
             btnStartTransfer.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            btnStartTransfer.ImageAlign = ContentAlignment.MiddleLeft;
-            btnStartTransfer.Location = new Point(0, 137);
+            btnStartTransfer.IconSize = 85;
+            btnStartTransfer.Location = new Point(0, -1);
             btnStartTransfer.Name = "btnStartTransfer";
-            btnStartTransfer.Size = new Size(225, 137);
+            btnStartTransfer.Size = new Size(830, 100);
             btnStartTransfer.TabIndex = 8;
-            btnStartTransfer.Text = "Empezar";
+            btnStartTransfer.Text = "Iniciar";
+            btnStartTransfer.TextAlign = ContentAlignment.MiddleRight;
+            btnStartTransfer.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnStartTransfer.UseVisualStyleBackColor = true;
             btnStartTransfer.Click += btnStartTransfer_Click;
             // 
@@ -82,27 +86,26 @@
             btnConfig.FlatStyle = FlatStyle.Popup;
             btnConfig.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btnConfig.ForeColor = Color.White;
-            btnConfig.IconChar = FontAwesome.Sharp.IconChar.Tools;
+            btnConfig.IconChar = FontAwesome.Sharp.IconChar.Sliders;
             btnConfig.IconColor = Color.DimGray;
             btnConfig.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            btnConfig.ImageAlign = ContentAlignment.MiddleLeft;
+            btnConfig.IconSize = 70;
             btnConfig.Location = new Point(0, 0);
             btnConfig.Name = "btnConfig";
-            btnConfig.Size = new Size(225, 137);
+            btnConfig.Size = new Size(96, 100);
             btnConfig.TabIndex = 9;
-            btnConfig.Text = "      Configuración";
             btnConfig.UseVisualStyleBackColor = true;
             btnConfig.Click += btnConfig_Click;
             // 
             // panel1
             // 
-            panel1.BackColor = Color.FromArgb(20, 18, 18);
-            panel1.Controls.Add(btnStartTransfer);
+            panel1.BackColor = Color.FromArgb(20, 25, 25);
+            panel1.BorderStyle = BorderStyle.Fixed3D;
             panel1.Controls.Add(btnConfig);
             panel1.Dock = DockStyle.Left;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(225, 450);
+            panel1.Size = new Size(100, 511);
             panel1.TabIndex = 10;
             // 
             // lblEstadoTransferencia
@@ -111,7 +114,7 @@
             lblEstadoTransferencia.BackColor = Color.DimGray;
             lblEstadoTransferencia.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
             lblEstadoTransferencia.ForeColor = Color.White;
-            lblEstadoTransferencia.Location = new Point(412, 110);
+            lblEstadoTransferencia.Location = new Point(16, 68);
             lblEstadoTransferencia.Name = "lblEstadoTransferencia";
             lblEstadoTransferencia.Size = new Size(189, 21);
             lblEstadoTransferencia.TabIndex = 12;
@@ -121,14 +124,16 @@
             // 
             panel2.Controls.Add(iconPictureBox3);
             panel2.Controls.Add(iconPictureBox2);
+            panel2.Controls.Add(lblEstadoTransferencia);
             panel2.Controls.Add(iconPictureBox1);
             panel2.Controls.Add(label3);
+            panel2.Controls.Add(lblTitulo);
             panel2.Controls.Add(label2);
             panel2.Controls.Add(label1);
-            panel2.Dock = DockStyle.Bottom;
-            panel2.Location = new Point(225, 137);
+            panel2.Dock = DockStyle.Top;
+            panel2.Location = new Point(100, 0);
             panel2.Name = "panel2";
-            panel2.Size = new Size(575, 313);
+            panel2.Size = new Size(834, 408);
             panel2.TabIndex = 13;
             // 
             // iconPictureBox3
@@ -139,7 +144,7 @@
             iconPictureBox3.IconColor = SystemColors.ControlText;
             iconPictureBox3.IconFont = FontAwesome.Sharp.IconFont.Auto;
             iconPictureBox3.IconSize = 42;
-            iconPictureBox3.Location = new Point(165, 173);
+            iconPictureBox3.Location = new Point(16, 271);
             iconPictureBox3.Name = "iconPictureBox3";
             iconPictureBox3.Size = new Size(42, 42);
             iconPictureBox3.TabIndex = 24;
@@ -153,7 +158,7 @@
             iconPictureBox2.IconColor = SystemColors.ControlText;
             iconPictureBox2.IconFont = FontAwesome.Sharp.IconFont.Auto;
             iconPictureBox2.IconSize = 42;
-            iconPictureBox2.Location = new Point(165, 103);
+            iconPictureBox2.Location = new Point(16, 201);
             iconPictureBox2.Name = "iconPictureBox2";
             iconPictureBox2.Size = new Size(42, 42);
             iconPictureBox2.TabIndex = 23;
@@ -167,7 +172,7 @@
             iconPictureBox1.IconColor = SystemColors.ControlText;
             iconPictureBox1.IconFont = FontAwesome.Sharp.IconFont.Auto;
             iconPictureBox1.IconSize = 42;
-            iconPictureBox1.Location = new Point(165, 33);
+            iconPictureBox1.Location = new Point(16, 131);
             iconPictureBox1.Name = "iconPictureBox1";
             iconPictureBox1.Size = new Size(42, 42);
             iconPictureBox1.TabIndex = 22;
@@ -178,7 +183,7 @@
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
             label3.ForeColor = Color.White;
-            label3.Location = new Point(213, 184);
+            label3.Location = new Point(64, 282);
             label3.Name = "label3";
             label3.Size = new Size(127, 21);
             label3.TabIndex = 21;
@@ -189,7 +194,7 @@
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
             label2.ForeColor = Color.White;
-            label2.Location = new Point(213, 114);
+            label2.Location = new Point(64, 212);
             label2.Name = "label2";
             label2.Size = new Size(178, 21);
             label2.TabIndex = 20;
@@ -200,11 +205,22 @@
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
             label1.ForeColor = Color.White;
-            label1.Location = new Point(213, 43);
+            label1.Location = new Point(64, 141);
             label1.Name = "label1";
             label1.Size = new Size(153, 21);
             label1.TabIndex = 19;
             label1.Text = "Conexión a internet";
+            // 
+            // panel3
+            // 
+            panel3.BackColor = Color.FromArgb(20, 25, 25);
+            panel3.BorderStyle = BorderStyle.Fixed3D;
+            panel3.Controls.Add(btnStartTransfer);
+            panel3.Dock = DockStyle.Bottom;
+            panel3.Location = new Point(100, 408);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(834, 103);
+            panel3.TabIndex = 15;
             // 
             // MainUI
             // 
@@ -212,11 +228,10 @@
             AutoScaleMode = AutoScaleMode.Font;
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
             BackColor = Color.DimGray;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(934, 511);
+            Controls.Add(panel3);
             Controls.Add(panel2);
-            Controls.Add(lblEstadoTransferencia);
             Controls.Add(panel1);
-            Controls.Add(lblTitulo);
             ForeColor = SystemColors.ControlText;
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
@@ -229,8 +244,8 @@
             ((System.ComponentModel.ISupportInitialize)iconPictureBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)iconPictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)iconPictureBox1).EndInit();
+            panel3.ResumeLayout(false);
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
@@ -246,5 +261,6 @@
         private FontAwesome.Sharp.IconPictureBox iconPictureBox1;
         private FontAwesome.Sharp.IconPictureBox iconPictureBox3;
         private FontAwesome.Sharp.IconPictureBox iconPictureBox2;
+        private Panel panel3;
     }
 }

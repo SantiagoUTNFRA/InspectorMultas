@@ -1,4 +1,4 @@
-namespace InspectorMultas
+namespace InspectorMultas.Logica
 {
     internal static class Program
     {

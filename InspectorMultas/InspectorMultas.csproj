@@ -9,7 +9,16 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="..\.editorconfig" Link=".editorconfig" />
+    <Compile Remove="Progreso.cs" />
+    <Compile Remove="Progreso.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Remove="Progreso.resx" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\.editorconfig" Link="Vista\.editorconfig" />
   </ItemGroup>
 
   <ItemGroup>

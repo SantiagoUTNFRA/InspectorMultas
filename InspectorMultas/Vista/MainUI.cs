@@ -1,3 +1,5 @@
+using InspectorMultas.Logica;
+
 namespace InspectorMultas
 {
     public partial class MainUI : Form
@@ -23,7 +25,7 @@ namespace InspectorMultas
                 return _instance;
             }
         }
-
+        
         private void btnConfig_Click(object sender, EventArgs e)
         {
             this.Hide();
@@ -63,7 +65,7 @@ namespace InspectorMultas
 
         private string ObtenerDirectorioOrigen()
         {
-            using (FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog())
+            using (FolderBrowserDialog folderBrowserDialog = new())
             {
                 if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
                 {

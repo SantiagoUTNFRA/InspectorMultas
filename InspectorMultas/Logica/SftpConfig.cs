@@ -1,6 +1,6 @@
 ﻿using WinSCP;
 
-namespace InspectorMultas
+namespace InspectorMultas.Logica
 {
     public class SftpConfig
     {
