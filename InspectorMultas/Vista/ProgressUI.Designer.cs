@@ -143,6 +143,7 @@
             btnExportPdf.TabIndex = 20;
             btnExportPdf.Text = "Exportar a PDF";
             btnExportPdf.UseVisualStyleBackColor = true;
+            btnExportPdf.Click += btnExportPdf_Click;
             // 
             // btnExportJson
             // 

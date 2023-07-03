@@ -139,5 +139,19 @@ namespace InspectorMultas.Logica
             return _config.DirectorioOrigen;
         }
 
+        public List<string> GetArchivosAMover()
+        {
+            string directorioOrigen = _config.DirectorioOrigen;
+            List<string> archivosAMover = Directory.GetFiles(directorioOrigen).ToList();
+
+            // Selecciona solo el nombre de los archivos
+            for (int i = 0; i < archivosAMover.Count; i++)
+            {
+                archivosAMover[i] = Path.GetFileName(archivosAMover[i]);
+            }
+
+            return archivosAMover;
+        }
+
     }
 }
