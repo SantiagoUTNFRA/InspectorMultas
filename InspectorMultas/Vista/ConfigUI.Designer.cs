@@ -31,22 +31,26 @@
             panel1 = new Panel();
             btnHome = new FontAwesome.Sharp.IconButton();
             btnSaveChanges = new FontAwesome.Sharp.IconButton();
-            lblEstadoTrasnferencia = new Label();
-            panel2 = new Panel();
+            lblTittle = new Label();
+            pnlConfig = new Panel();
+            gbxConfigFolder = new GroupBox();
             lblRemotePath = new Label();
-            lblEstadoTransferencia = new Label();
-            textBox1 = new TextBox();
-            lblPortNumber = new Label();
-            lblPassword = new Label();
-            txtPortNumber = new TextBox();
-            txtPassword = new TextBox();
-            lblUserName = new Label();
+            btnSourceFolder = new FontAwesome.Sharp.IconButton();
+            txtSourcePath = new TextBox();
+            lblSourcePath = new Label();
+            txtRemotePath = new TextBox();
+            gbxConfigServer = new GroupBox();
             lblHostName = new Label();
-            txtUserName = new TextBox();
             txtHostName = new TextBox();
+            txtUserName = new TextBox();
+            lblUserName = new Label();
+            lblPortNumber = new Label();
+            txtPortNumber = new TextBox();
             panel3 = new Panel();
             panel1.SuspendLayout();
-            panel2.SuspendLayout();
+            pnlConfig.SuspendLayout();
+            gbxConfigFolder.SuspendLayout();
+            gbxConfigServer.SuspendLayout();
             panel3.SuspendLayout();
             SuspendLayout();
             // 
@@ -65,16 +69,17 @@
             // 
             btnHome.Dock = DockStyle.Top;
             btnHome.FlatStyle = FlatStyle.Popup;
-            btnHome.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            btnHome.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btnHome.ForeColor = Color.White;
             btnHome.IconChar = FontAwesome.Sharp.IconChar.House;
-            btnHome.IconColor = Color.DimGray;
+            btnHome.IconColor = Color.Gray;
             btnHome.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btnHome.IconSize = 70;
             btnHome.Location = new Point(0, 0);
             btnHome.Name = "btnHome";
             btnHome.Size = new Size(96, 100);
             btnHome.TabIndex = 8;
+            btnHome.TextAlign = ContentAlignment.BottomCenter;
             btnHome.UseVisualStyleBackColor = true;
             btnHome.Click += btnHome_Click;
             // 
@@ -85,10 +90,10 @@
             btnSaveChanges.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point);
             btnSaveChanges.ForeColor = Color.White;
             btnSaveChanges.IconChar = FontAwesome.Sharp.IconChar.CheckCircle;
-            btnSaveChanges.IconColor = Color.DimGray;
+            btnSaveChanges.IconColor = Color.Gray;
             btnSaveChanges.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btnSaveChanges.IconSize = 85;
-            btnSaveChanges.Location = new Point(0, -1);
+            btnSaveChanges.Location = new Point(0, -4);
             btnSaveChanges.Name = "btnSaveChanges";
             btnSaveChanges.Size = new Size(830, 100);
             btnSaveChanges.TabIndex = 11;
@@ -98,155 +103,193 @@
             btnSaveChanges.UseVisualStyleBackColor = true;
             btnSaveChanges.Click += btnSaveChanges_Click;
             // 
-            // lblEstadoTrasnferencia
+            // lblTittle
             // 
-            lblEstadoTrasnferencia.AutoSize = true;
-            lblEstadoTrasnferencia.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point);
-            lblEstadoTrasnferencia.ForeColor = Color.FromArgb(20, 25, 25);
-            lblEstadoTrasnferencia.Location = new Point(310, 25);
-            lblEstadoTrasnferencia.Name = "lblEstadoTrasnferencia";
-            lblEstadoTrasnferencia.Size = new Size(194, 32);
-            lblEstadoTrasnferencia.TabIndex = 12;
-            lblEstadoTrasnferencia.Text = "Vial Control S.A";
+            lblTittle.AutoSize = true;
+            lblTittle.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point);
+            lblTittle.ForeColor = Color.FromArgb(20, 25, 25);
+            lblTittle.Location = new Point(310, 25);
+            lblTittle.Name = "lblTittle";
+            lblTittle.Size = new Size(194, 32);
+            lblTittle.TabIndex = 12;
+            lblTittle.Text = "Vial Control S.A";
             // 
-            // panel2
+            // pnlConfig
             // 
-            panel2.Controls.Add(lblRemotePath);
-            panel2.Controls.Add(lblEstadoTransferencia);
-            panel2.Controls.Add(textBox1);
-            panel2.Controls.Add(lblPortNumber);
-            panel2.Controls.Add(lblEstadoTrasnferencia);
-            panel2.Controls.Add(lblPassword);
-            panel2.Controls.Add(txtPortNumber);
-            panel2.Controls.Add(txtPassword);
-            panel2.Controls.Add(lblUserName);
-            panel2.Controls.Add(lblHostName);
-            panel2.Controls.Add(txtUserName);
-            panel2.Controls.Add(txtHostName);
-            panel2.Dock = DockStyle.Top;
-            panel2.Location = new Point(100, 0);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(834, 408);
-            panel2.TabIndex = 13;
+            pnlConfig.BackColor = Color.Gray;
+            pnlConfig.Controls.Add(gbxConfigFolder);
+            pnlConfig.Controls.Add(gbxConfigServer);
+            pnlConfig.Controls.Add(lblTittle);
+            pnlConfig.Dock = DockStyle.Top;
+            pnlConfig.ForeColor = Color.FromArgb(20, 25, 25);
+            pnlConfig.Location = new Point(100, 0);
+            pnlConfig.Name = "pnlConfig";
+            pnlConfig.Size = new Size(834, 411);
+            pnlConfig.TabIndex = 13;
+            // 
+            // gbxConfigFolder
+            // 
+            gbxConfigFolder.Controls.Add(lblRemotePath);
+            gbxConfigFolder.Controls.Add(btnSourceFolder);
+            gbxConfigFolder.Controls.Add(txtSourcePath);
+            gbxConfigFolder.Controls.Add(lblSourcePath);
+            gbxConfigFolder.Controls.Add(txtRemotePath);
+            gbxConfigFolder.FlatStyle = FlatStyle.Flat;
+            gbxConfigFolder.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            gbxConfigFolder.ForeColor = Color.FromArgb(20, 25, 25);
+            gbxConfigFolder.Location = new Point(6, 181);
+            gbxConfigFolder.Name = "gbxConfigFolder";
+            gbxConfigFolder.Size = new Size(368, 222);
+            gbxConfigFolder.TabIndex = 20;
+            gbxConfigFolder.TabStop = false;
+            gbxConfigFolder.Text = "Carpeta";
             // 
             // lblRemotePath
             // 
             lblRemotePath.AutoSize = true;
             lblRemotePath.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            lblRemotePath.ForeColor = Color.White;
-            lblRemotePath.Location = new Point(46, 360);
+            lblRemotePath.ForeColor = Color.FromArgb(20, 25, 25);
+            lblRemotePath.Location = new Point(11, 109);
             lblRemotePath.Name = "lblRemotePath";
             lblRemotePath.Size = new Size(66, 21);
             lblRemotePath.TabIndex = 18;
             lblRemotePath.Text = "Destino";
             lblRemotePath.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // lblEstadoTransferencia
+            // btnSourceFolder
             // 
-            lblEstadoTransferencia.AutoSize = true;
-            lblEstadoTransferencia.BackColor = Color.DimGray;
-            lblEstadoTransferencia.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            lblEstadoTransferencia.ForeColor = Color.White;
-            lblEstadoTransferencia.Location = new Point(65, 89);
-            lblEstadoTransferencia.Name = "lblEstadoTransferencia";
-            lblEstadoTransferencia.Size = new Size(113, 21);
-            lblEstadoTransferencia.TabIndex = 14;
-            lblEstadoTransferencia.Text = "Configuración";
+            btnSourceFolder.AutoEllipsis = true;
+            btnSourceFolder.BackColor = Color.DimGray;
+            btnSourceFolder.FlatAppearance.BorderColor = Color.FromArgb(0, 0, 0, 0);
+            btnSourceFolder.FlatAppearance.BorderSize = 0;
+            btnSourceFolder.FlatStyle = FlatStyle.Popup;
+            btnSourceFolder.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point);
+            btnSourceFolder.ForeColor = Color.White;
+            btnSourceFolder.IconChar = FontAwesome.Sharp.IconChar.Ellipsis;
+            btnSourceFolder.IconColor = Color.FromArgb(20, 25, 25);
+            btnSourceFolder.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            btnSourceFolder.IconSize = 28;
+            btnSourceFolder.ImageAlign = ContentAlignment.TopRight;
+            btnSourceFolder.Location = new Point(316, 50);
+            btnSourceFolder.Margin = new Padding(0);
+            btnSourceFolder.Name = "btnSourceFolder";
+            btnSourceFolder.Size = new Size(36, 29);
+            btnSourceFolder.TabIndex = 21;
+            btnSourceFolder.TextAlign = ContentAlignment.MiddleRight;
+            btnSourceFolder.UseVisualStyleBackColor = false;
+            btnSourceFolder.Click += btnSourceFolder_Click;
             // 
-            // textBox1
+            // txtSourcePath
             // 
-            textBox1.BackColor = Color.DimGray;
-            textBox1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            textBox1.Location = new Point(118, 357);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(227, 29);
-            textBox1.TabIndex = 17;
+            txtSourcePath.BackColor = Color.Gray;
+            txtSourcePath.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            txtSourcePath.Location = new Point(83, 50);
+            txtSourcePath.Name = "txtSourcePath";
+            txtSourcePath.PasswordChar = '*';
+            txtSourcePath.Size = new Size(227, 29);
+            txtSourcePath.TabIndex = 13;
             // 
-            // lblPortNumber
+            // lblSourcePath
             // 
-            lblPortNumber.AutoSize = true;
-            lblPortNumber.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            lblPortNumber.ForeColor = Color.White;
-            lblPortNumber.Location = new Point(53, 303);
-            lblPortNumber.Name = "lblPortNumber";
-            lblPortNumber.Size = new Size(59, 21);
-            lblPortNumber.TabIndex = 16;
-            lblPortNumber.Text = "Puerto";
-            lblPortNumber.TextAlign = ContentAlignment.MiddleLeft;
+            lblSourcePath.AutoSize = true;
+            lblSourcePath.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            lblSourcePath.ForeColor = Color.FromArgb(20, 25, 25);
+            lblSourcePath.Location = new Point(11, 53);
+            lblSourcePath.Name = "lblSourcePath";
+            lblSourcePath.Size = new Size(60, 21);
+            lblSourcePath.TabIndex = 15;
+            lblSourcePath.Text = "Origen";
+            lblSourcePath.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // lblPassword
+            // txtRemotePath
             // 
-            lblPassword.AutoSize = true;
-            lblPassword.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            lblPassword.ForeColor = Color.White;
-            lblPassword.Location = new Point(20, 245);
-            lblPassword.Name = "lblPassword";
-            lblPassword.Size = new Size(92, 21);
-            lblPassword.TabIndex = 15;
-            lblPassword.Text = "Contraseña";
-            lblPassword.TextAlign = ContentAlignment.MiddleLeft;
+            txtRemotePath.BackColor = Color.Gray;
+            txtRemotePath.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            txtRemotePath.Location = new Point(83, 108);
+            txtRemotePath.Name = "txtRemotePath";
+            txtRemotePath.Size = new Size(227, 29);
+            txtRemotePath.TabIndex = 17;
             // 
-            // txtPortNumber
+            // gbxConfigServer
             // 
-            txtPortNumber.BackColor = Color.DimGray;
-            txtPortNumber.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            txtPortNumber.Location = new Point(118, 300);
-            txtPortNumber.Name = "txtPortNumber";
-            txtPortNumber.Size = new Size(227, 29);
-            txtPortNumber.TabIndex = 14;
-            // 
-            // txtPassword
-            // 
-            txtPassword.BackColor = Color.DimGray;
-            txtPassword.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            txtPassword.Location = new Point(118, 243);
-            txtPassword.Name = "txtPassword";
-            txtPassword.PasswordChar = '*';
-            txtPassword.Size = new Size(227, 29);
-            txtPassword.TabIndex = 13;
-            // 
-            // lblUserName
-            // 
-            lblUserName.AutoSize = true;
-            lblUserName.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            lblUserName.ForeColor = Color.White;
-            lblUserName.Location = new Point(47, 188);
-            lblUserName.Name = "lblUserName";
-            lblUserName.Size = new Size(65, 21);
-            lblUserName.TabIndex = 12;
-            lblUserName.Text = "Usuario";
-            lblUserName.TextAlign = ContentAlignment.MiddleLeft;
+            gbxConfigServer.Controls.Add(lblHostName);
+            gbxConfigServer.Controls.Add(txtHostName);
+            gbxConfigServer.Controls.Add(txtUserName);
+            gbxConfigServer.Controls.Add(lblUserName);
+            gbxConfigServer.Controls.Add(lblPortNumber);
+            gbxConfigServer.Controls.Add(txtPortNumber);
+            gbxConfigServer.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            gbxConfigServer.ForeColor = Color.FromArgb(20, 25, 25);
+            gbxConfigServer.Location = new Point(454, 181);
+            gbxConfigServer.Name = "gbxConfigServer";
+            gbxConfigServer.Size = new Size(368, 222);
+            gbxConfigServer.TabIndex = 19;
+            gbxConfigServer.TabStop = false;
+            gbxConfigServer.Text = "Server";
             // 
             // lblHostName
             // 
             lblHostName.AutoSize = true;
             lblHostName.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            lblHostName.ForeColor = Color.White;
-            lblHostName.Location = new Point(39, 129);
+            lblHostName.ForeColor = Color.FromArgb(20, 25, 25);
+            lblHostName.Location = new Point(16, 56);
             lblHostName.Name = "lblHostName";
             lblHostName.Size = new Size(73, 21);
             lblHostName.TabIndex = 11;
             lblHostName.Text = "Servidor";
             lblHostName.TextAlign = ContentAlignment.MiddleLeft;
             // 
+            // txtHostName
+            // 
+            txtHostName.BackColor = Color.Gray;
+            txtHostName.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            txtHostName.ForeColor = Color.White;
+            txtHostName.Location = new Point(95, 50);
+            txtHostName.Name = "txtHostName";
+            txtHostName.Size = new Size(227, 29);
+            txtHostName.TabIndex = 9;
+            // 
             // txtUserName
             // 
-            txtUserName.BackColor = Color.DimGray;
+            txtUserName.BackColor = Color.Gray;
             txtUserName.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            txtUserName.Location = new Point(118, 186);
+            txtUserName.Location = new Point(95, 108);
             txtUserName.Name = "txtUserName";
             txtUserName.Size = new Size(227, 29);
             txtUserName.TabIndex = 10;
             // 
-            // txtHostName
+            // lblUserName
             // 
-            txtHostName.BackColor = Color.DimGray;
-            txtHostName.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            txtHostName.ForeColor = Color.White;
-            txtHostName.Location = new Point(118, 129);
-            txtHostName.Name = "txtHostName";
-            txtHostName.Size = new Size(227, 29);
-            txtHostName.TabIndex = 9;
+            lblUserName.AutoSize = true;
+            lblUserName.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            lblUserName.ForeColor = Color.FromArgb(20, 25, 25);
+            lblUserName.Location = new Point(16, 109);
+            lblUserName.Name = "lblUserName";
+            lblUserName.Size = new Size(65, 21);
+            lblUserName.TabIndex = 12;
+            lblUserName.Text = "Usuario";
+            lblUserName.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // lblPortNumber
+            // 
+            lblPortNumber.AutoSize = true;
+            lblPortNumber.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            lblPortNumber.ForeColor = Color.FromArgb(20, 25, 25);
+            lblPortNumber.Location = new Point(16, 165);
+            lblPortNumber.Name = "lblPortNumber";
+            lblPortNumber.Size = new Size(59, 21);
+            lblPortNumber.TabIndex = 16;
+            lblPortNumber.Text = "Puerto";
+            lblPortNumber.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // txtPortNumber
+            // 
+            txtPortNumber.BackColor = Color.Gray;
+            txtPortNumber.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            txtPortNumber.Location = new Point(95, 163);
+            txtPortNumber.Name = "txtPortNumber";
+            txtPortNumber.Size = new Size(227, 29);
+            txtPortNumber.TabIndex = 14;
             // 
             // panel3
             // 
@@ -254,9 +297,9 @@
             panel3.BorderStyle = BorderStyle.Fixed3D;
             panel3.Controls.Add(btnSaveChanges);
             panel3.Dock = DockStyle.Bottom;
-            panel3.Location = new Point(100, 408);
+            panel3.Location = new Point(100, 411);
             panel3.Name = "panel3";
-            panel3.Size = new Size(834, 103);
+            panel3.Size = new Size(834, 100);
             panel3.TabIndex = 16;
             // 
             // ConfigUI
@@ -267,7 +310,7 @@
             BackColor = Color.DimGray;
             ClientSize = new Size(934, 511);
             Controls.Add(panel3);
-            Controls.Add(panel2);
+            Controls.Add(pnlConfig);
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
@@ -275,8 +318,12 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "ConfigUI";
             panel1.ResumeLayout(false);
-            panel2.ResumeLayout(false);
-            panel2.PerformLayout();
+            pnlConfig.ResumeLayout(false);
+            pnlConfig.PerformLayout();
+            gbxConfigFolder.ResumeLayout(false);
+            gbxConfigFolder.PerformLayout();
+            gbxConfigServer.ResumeLayout(false);
+            gbxConfigServer.PerformLayout();
             panel3.ResumeLayout(false);
             ResumeLayout(false);
         }
@@ -284,20 +331,22 @@
         #endregion
         private Panel panel1;
         private FontAwesome.Sharp.IconButton btnHome;
-        private Label lblEstadoTrasnferencia;
+        private Label lblTittle;
         private FontAwesome.Sharp.IconButton btnSaveChanges;
-        private Panel panel2;
+        private Panel pnlConfig;
         private Label lblPortNumber;
-        private Label lblPassword;
+        private Label lblSourcePath;
         private TextBox txtPortNumber;
-        private TextBox txtPassword;
+        private TextBox txtSourcePath;
         private Label lblUserName;
         private Label lblHostName;
         private TextBox txtUserName;
         private TextBox txtHostName;
         private Label lblRemotePath;
-        private TextBox textBox1;
-        private Label lblEstadoTransferencia;
+        private TextBox txtRemotePath;
         private Panel panel3;
+        private GroupBox gbxConfigServer;
+        private GroupBox gbxConfigFolder;
+        private FontAwesome.Sharp.IconButton btnSourceFolder;
     }
 }

@@ -11,6 +11,7 @@ namespace InspectorMultas.Logica
         public int PortNumber { get; set; }
         public string SshHostKeyFingerprint { get; set; }
         public string RemotePath { get; set; }
+        public string DirectorioOrigen { get; set; }
     }
 
 }

@@ -6,7 +6,9 @@ namespace InspectorMultas
     public partial class ConfigUI : Form
     {
         private string sshHostKeyFingerPrint = "ssh-rsa 2048 isZ3ChcOljIL3Xn+WufO5yXBs0qSCwWQX/9BmpPEjFM";
+        private string password = "vialcontrol1";
         private static ConfigUI _instance = null!;
+        private string directorioOrigenSeleccionado;
 
         private ConfigUI()
         {
@@ -38,18 +40,18 @@ namespace InspectorMultas
                 Protocol = Protocol.Sftp,
                 HostName = txtHostName.Text,
                 UserName = txtUserName.Text,
-                Password = txtPassword.Text,
+                Password = password,
                 PortNumber = int.Parse(txtPortNumber.Text),
                 SshHostKeyFingerprint = sshHostKeyFingerPrint,
-                RemotePath = "/sin_primitiva/test/"
+                RemotePath = txtRemotePath.Text,
+                DirectorioOrigen = directorioOrigenSeleccionado
             };
 
-            TransferenciaFtp transferenciaFtp = new TransferenciaFtp();
+            TransferSftp transferenciaFtp = new();
             transferenciaFtp.SaveConfiguration(sftpConfig);
 
-            this.Close();
-            MainUI mainUI = new();
-            mainUI.Show();
+            this.Hide();
+            MainUI.Instance.Show();
         }
 
         private void btnHome_Click(object sender, EventArgs e)
@@ -61,7 +63,7 @@ namespace InspectorMultas
         private bool ValidateInputs()
         {
             if (string.IsNullOrWhiteSpace(txtHostName.Text) || string.IsNullOrWhiteSpace(txtUserName.Text) ||
-                string.IsNullOrWhiteSpace(txtPassword.Text) || string.IsNullOrWhiteSpace(txtPortNumber.Text) ||
+                string.IsNullOrWhiteSpace(txtSourcePath.Text) || string.IsNullOrWhiteSpace(txtPortNumber.Text) ||
                 string.IsNullOrWhiteSpace(sshHostKeyFingerPrint))
             {
                 MessageBox.Show("Por favor, complete todos los campos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -76,6 +78,30 @@ namespace InspectorMultas
             }
 
             return true;
+        }
+
+        private void btnSourceFolder_Click(object sender, EventArgs e)
+        {
+            directorioOrigenSeleccionado = ObtenerDirectorioOrigen();
+
+            if (directorioOrigenSeleccionado != null)
+            {
+                txtSourcePath.Text = directorioOrigenSeleccionado;
+            }
+        }
+
+
+        private string ObtenerDirectorioOrigen()
+        {
+            using (FolderBrowserDialog folderBrowserDialog = new())
+            {
+                if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
+                {
+                    return folderBrowserDialog.SelectedPath;
+                }
+            }
+
+            return null!;
         }
     }
 }

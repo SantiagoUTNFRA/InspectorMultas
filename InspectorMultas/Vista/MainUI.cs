@@ -1,16 +1,15 @@
 using InspectorMultas.Logica;
+using System.Net.NetworkInformation;
 
 namespace InspectorMultas
 {
     public partial class MainUI : Form
     {
-        private readonly TransferenciaFtp _transferenciaFtp;
         private static MainUI _instance = null!;
 
         public MainUI()
         {
             InitializeComponent();
-            _transferenciaFtp = new TransferenciaFtp();
         }
 
         public static MainUI Instance
@@ -25,7 +24,7 @@ namespace InspectorMultas
                 return _instance;
             }
         }
-        
+
         private void btnConfig_Click(object sender, EventArgs e)
         {
             this.Hide();
@@ -38,54 +37,25 @@ namespace InspectorMultas
             {
                 return;
             }
-
-            try
+            else
             {
-                lblEstadoTransferencia.Text = "Transferencia iniciada";
-
-                string directorioOrigen = ObtenerDirectorioOrigen();
-
-                if (string.IsNullOrEmpty(directorioOrigen))
-                {
-                    lblEstadoTransferencia.Text = "Ningún directorio seleccionado. Transferencia cancelada.";
-                    return;
-                }
-
-                _transferenciaFtp.RealizarTransferencia(directorioOrigen);
-
-                lblEstadoTransferencia.Text = "Transferencia finalizada";
+                lblTitulo.Text = "Transferencia en progreso";
+                this.Hide();
+                ProgressUI.Instance.ResetUI(); // Restablecer la interfaz de usuario
+                ProgressUI.Instance.Show();
             }
-            catch (Exception ex)
-            {
-                lblTitulo.Text = "Transferencia con error";
-
-                MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private string ObtenerDirectorioOrigen()
-        {
-            using (FolderBrowserDialog folderBrowserDialog = new())
-            {
-                if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
-                {
-                    return folderBrowserDialog.SelectedPath;
-                }
-            }
-
-            return null!;
         }
 
         private bool VerificarConfiguracion()
         {
-            if (!File.Exists(TransferenciaFtp.ConfigFilePath))
+            if (!File.Exists(TransferSftp.ConfigFilePath))
             {
                 MessageBox.Show("El archivo de configuración no existe.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
             // Verificar la conexión a Internet
-            if (!System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())
+            if (!NetworkInterface.GetIsNetworkAvailable())
             {
                 MessageBox.Show("No hay conexión a Internet.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;

@@ -67,7 +67,7 @@
             btnStartTransfer.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point);
             btnStartTransfer.ForeColor = Color.White;
             btnStartTransfer.IconChar = FontAwesome.Sharp.IconChar.Play;
-            btnStartTransfer.IconColor = Color.DimGray;
+            btnStartTransfer.IconColor = Color.Gray;
             btnStartTransfer.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btnStartTransfer.IconSize = 85;
             btnStartTransfer.Location = new Point(0, -1);
@@ -87,7 +87,7 @@
             btnConfig.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btnConfig.ForeColor = Color.White;
             btnConfig.IconChar = FontAwesome.Sharp.IconChar.Sliders;
-            btnConfig.IconColor = Color.DimGray;
+            btnConfig.IconColor = Color.Gray;
             btnConfig.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btnConfig.IconSize = 70;
             btnConfig.Location = new Point(0, 0);
@@ -111,7 +111,7 @@
             // lblEstadoTransferencia
             // 
             lblEstadoTransferencia.AutoSize = true;
-            lblEstadoTransferencia.BackColor = Color.DimGray;
+            lblEstadoTransferencia.BackColor = Color.Gray;
             lblEstadoTransferencia.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
             lblEstadoTransferencia.ForeColor = Color.White;
             lblEstadoTransferencia.Location = new Point(16, 68);
@@ -122,6 +122,7 @@
             // 
             // panel2
             // 
+            panel2.BackColor = Color.Gray;
             panel2.Controls.Add(iconPictureBox3);
             panel2.Controls.Add(iconPictureBox2);
             panel2.Controls.Add(lblEstadoTransferencia);
@@ -138,7 +139,7 @@
             // 
             // iconPictureBox3
             // 
-            iconPictureBox3.BackColor = Color.DimGray;
+            iconPictureBox3.BackColor = Color.Gray;
             iconPictureBox3.ForeColor = SystemColors.ControlText;
             iconPictureBox3.IconChar = FontAwesome.Sharp.IconChar.TimesRectangle;
             iconPictureBox3.IconColor = SystemColors.ControlText;
@@ -152,7 +153,7 @@
             // 
             // iconPictureBox2
             // 
-            iconPictureBox2.BackColor = Color.DimGray;
+            iconPictureBox2.BackColor = Color.Gray;
             iconPictureBox2.ForeColor = SystemColors.ControlText;
             iconPictureBox2.IconChar = FontAwesome.Sharp.IconChar.Check;
             iconPictureBox2.IconColor = SystemColors.ControlText;
@@ -166,7 +167,7 @@
             // 
             // iconPictureBox1
             // 
-            iconPictureBox1.BackColor = Color.DimGray;
+            iconPictureBox1.BackColor = Color.Gray;
             iconPictureBox1.ForeColor = SystemColors.ControlText;
             iconPictureBox1.IconChar = FontAwesome.Sharp.IconChar.Check;
             iconPictureBox1.IconColor = SystemColors.ControlText;
@@ -196,9 +197,9 @@
             label2.ForeColor = Color.White;
             label2.Location = new Point(64, 212);
             label2.Name = "label2";
-            label2.Size = new Size(178, 21);
+            label2.Size = new Size(153, 21);
             label2.TabIndex = 20;
-            label2.Text = "Configuración correcta";
+            label2.Text = "Conexión a internet";
             // 
             // label1
             // 
@@ -207,9 +208,9 @@
             label1.ForeColor = Color.White;
             label1.Location = new Point(64, 141);
             label1.Name = "label1";
-            label1.Size = new Size(153, 21);
+            label1.Size = new Size(178, 21);
             label1.TabIndex = 19;
-            label1.Text = "Conexión a internet";
+            label1.Text = "Configuración correcta";
             // 
             // panel3
             // 
