@@ -90,13 +90,13 @@ namespace InspectorMultas
             PdfWriter writer = PdfWriter.GetInstance(document, new FileStream("Informe.pdf", FileMode.Create));
             document.Open();
 
-
             // Establecer la fuente
             BaseFont baseFont = BaseFont.CreateFont(BaseFont.TIMES_ROMAN, BaseFont.CP1252, BaseFont.NOT_EMBEDDED);
             Font fontTitle = new Font(baseFont, 20, iTextSharp.text.Font.BOLD);
-            Font fontHeader = new Font(baseFont, 18, iTextSharp.text.Font.BOLD);
+            Font fontHeader = new Font(baseFont, 18, iTextSharp.text.Font.NORMAL, new BaseColor(20, 25, 25));
             Font fontBody = new Font(baseFont, 16, iTextSharp.text.Font.NORMAL);
-            
+            Font fontFirma = new Font(baseFont, 18, iTextSharp.text.Font.NORMAL, new BaseColor(20, 25, 25));
+
             // Título del documento
             Paragraph title = new Paragraph("Vial Control - Informe de transferencias de archivos", fontTitle);
             title.Alignment = Element.ALIGN_CENTER;
@@ -109,7 +109,7 @@ namespace InspectorMultas
 
             // Agregar encabezados de las columnas
             PdfPCell cell = new PdfPCell(new Phrase("Nombre del archivo", fontHeader));
-            cell.BackgroundColor = new BaseColor(210, 210, 210);  // Color de fondo gris claro
+            cell.BackgroundColor = new BaseColor(210, 210, 210);
             table.AddCell(cell);
 
             cell = new PdfPCell(new Phrase("Estado", fontHeader));
@@ -128,8 +128,13 @@ namespace InspectorMultas
                 // Comprueba si el archivo ha sido transferido correctamente
                 if (listBox1.Items.Contains(nombreArchivo))
                 {
-                    table.AddCell(new Phrase("Transferido correctamente", fontBody));
-                    table.AddCell(new Phrase(_subidaArchivo[nombreArchivo].ToString(), fontBody));  // Agrega la fecha y hora de subida del archivo
+                    cell = new PdfPCell(new Phrase("Transferido correctamente", fontBody));
+                    //cell.BackgroundColor = new BaseColor(210, 210, 210);
+                    table.AddCell(cell);
+
+                    cell = new PdfPCell(new Phrase(_subidaArchivo[nombreArchivo].ToString(), fontBody));
+                    //cell.BackgroundColor = new BaseColor(210, 210, 210);
+                    table.AddCell(cell);
                 }
                 else
                 {
@@ -137,7 +142,9 @@ namespace InspectorMultas
                     cell.BackgroundColor = new BaseColor(255, 102, 102);  // Color de fondo rojo claro para destacar el error
                     table.AddCell(cell);
 
-                    table.AddCell("");  // Agrega una celda vacía ya que no hay fecha y hora de subida para los archivos no transferidos
+                    cell = new PdfPCell();  // Agrega una celda vacía ya que no hay fecha y hora de subida para los archivos no transferidos
+                    cell.BackgroundColor = new BaseColor(210, 210, 210);
+                    table.AddCell(cell);
                 }
             }
 
@@ -151,9 +158,14 @@ namespace InspectorMultas
             date.Alignment = Element.ALIGN_RIGHT;
             document.Add(date);
 
+            // Agregar firma de la empresa
+            Paragraph firma = new Paragraph("\n\nVial Control", fontFirma);
+            firma.Alignment = Element.ALIGN_RIGHT;
+            document.Add(firma);
 
             document.Close();
         }
+
 
         private void btnExportPdf_Click(object sender, EventArgs e)
         {
