@@ -65,7 +65,7 @@
             btnStartTransfer.Dock = DockStyle.Bottom;
             btnStartTransfer.FlatStyle = FlatStyle.Popup;
             btnStartTransfer.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point);
-            btnStartTransfer.ForeColor = Color.White;
+            btnStartTransfer.ForeColor = Color.Gray;
             btnStartTransfer.IconChar = FontAwesome.Sharp.IconChar.Play;
             btnStartTransfer.IconColor = Color.Gray;
             btnStartTransfer.IconFont = FontAwesome.Sharp.IconFont.Auto;
@@ -79,6 +79,8 @@
             btnStartTransfer.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnStartTransfer.UseVisualStyleBackColor = true;
             btnStartTransfer.Click += btnStartTransfer_Click;
+            btnStartTransfer.MouseEnter += btnStartTransfer_MouseEnter;
+            btnStartTransfer.MouseLeave += btnStartTransfer_MouseLeave;
             // 
             // btnConfig
             // 
@@ -96,6 +98,8 @@
             btnConfig.TabIndex = 9;
             btnConfig.UseVisualStyleBackColor = true;
             btnConfig.Click += btnConfig_Click;
+            btnConfig.MouseEnter += btnConfig_MouseEnter;
+            btnConfig.MouseLeave += btnConfig_MouseLeave;
             // 
             // panel1
             // 
@@ -113,7 +117,7 @@
             lblEstadoTransferencia.AutoSize = true;
             lblEstadoTransferencia.BackColor = Color.Gray;
             lblEstadoTransferencia.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            lblEstadoTransferencia.ForeColor = Color.White;
+            lblEstadoTransferencia.ForeColor = Color.FromArgb(20, 25, 25);
             lblEstadoTransferencia.Location = new Point(16, 68);
             lblEstadoTransferencia.Name = "lblEstadoTransferencia";
             lblEstadoTransferencia.Size = new Size(189, 21);
@@ -183,7 +187,7 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            label3.ForeColor = Color.White;
+            label3.ForeColor = Color.FromArgb(20, 25, 25);
             label3.Location = new Point(64, 282);
             label3.Name = "label3";
             label3.Size = new Size(127, 21);
@@ -194,7 +198,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            label2.ForeColor = Color.White;
+            label2.ForeColor = Color.FromArgb(20, 25, 25);
             label2.Location = new Point(64, 212);
             label2.Name = "label2";
             label2.Size = new Size(153, 21);
@@ -205,7 +209,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            label1.ForeColor = Color.White;
+            label1.ForeColor = Color.FromArgb(20, 25, 25);
             label1.Location = new Point(64, 141);
             label1.Name = "label1";
             label1.Size = new Size(178, 21);

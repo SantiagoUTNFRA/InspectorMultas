@@ -1,6 +1,9 @@
-﻿using InspectorMultas.Logica;
+﻿using CsvHelper;
+using InspectorMultas.Logica;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
+using System.Formats.Asn1;
+using System.Globalization;
 using Font = iTextSharp.text.Font;
 
 namespace InspectorMultas
@@ -84,10 +87,10 @@ namespace InspectorMultas
         }
 
 
-        private void ExportarInforme()
+        private void ExportarInforme(string rutaArchivo)
         {
             Document document = new Document();
-            PdfWriter writer = PdfWriter.GetInstance(document, new FileStream("Informe.pdf", FileMode.Create));
+            PdfWriter writer = PdfWriter.GetInstance(document, new FileStream(rutaArchivo, FileMode.Create));
             document.Open();
 
             // Establecer la fuente
@@ -166,11 +169,133 @@ namespace InspectorMultas
             document.Close();
         }
 
+        private List<InformeFila> CrearInforme()
+        {
+            List<InformeFila> informe = new List<InformeFila>();
+
+            foreach (string nombreArchivo in _transferenciaSftp.GetArchivosAMover())
+            {
+                InformeFila fila = new InformeFila();
+                fila.NombreDelArchivo = nombreArchivo;
+                if (listBox1.Items.Contains(nombreArchivo))
+                {
+                    fila.Estado = "Transferido correctamente";
+                    fila.FechaYHoraDeSubida = _subidaArchivo[nombreArchivo].ToString();
+                }
+                else
+                {
+                    fila.Estado = "No transferido";
+                    fila.FechaYHoraDeSubida = "";  // Vacío para los archivos no transferidos
+                }
+                informe.Add(fila);
+            }
+
+            return informe;
+        }
+
+        private void ExportarInformeJson(string ruta)
+        {
+            List<InformeFila> informe = CrearInforme();
+            string json = Newtonsoft.Json.JsonConvert.SerializeObject(informe, Newtonsoft.Json.Formatting.Indented);
+            File.WriteAllText(Path.Combine(ruta, "Informe.json"), json);
+        }
+
+        private void ExportarInformeCsv(string ruta)
+        {
+            List<InformeFila> informe = CrearInforme();
+            using (var writer = new StreamWriter(Path.Combine(ruta, "Informe.csv")))
+            using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))
+            {
+                csv.WriteRecords(informe);
+            }
+        }
+
+
 
         private void btnExportPdf_Click(object sender, EventArgs e)
         {
-            ExportarInforme();
-            MessageBox.Show("Informe exportado correctamente");
+            string directorio = ObtenerDirectorioOrigen();
+            if (directorio != null)
+            {
+                ExportarInforme(Path.Combine(directorio, "Informe.pdf"));
+                MessageBox.Show("Informe exportado correctamente");
+            }
         }
+
+        private void btnExportJson_Click(object sender, EventArgs e)
+        {
+            string? rutaArchivo = ObtenerDirectorioOrigen();
+            if (rutaArchivo != null)
+            {
+                ExportarInformeJson(rutaArchivo);
+                MessageBox.Show("Informe exportado correctamente");
+            }
+        }
+
+        private void btnExportCsv_Click(object sender, EventArgs e)
+        {
+            string? rutaArchivo = ObtenerDirectorioOrigen();
+            if (rutaArchivo != null)
+            {
+                ExportarInformeCsv(rutaArchivo);
+                MessageBox.Show("Informe exportado correctamente");
+            }
+        }
+
+        //////////////////////////////////////////////////////////
+        private void btnHome_MouseEnter(object sender, EventArgs e)
+        {
+            btnHome.IconSize = 80;
+        }
+
+        private void btnHome_MouseLeave(object sender, EventArgs e)
+        {
+            btnHome.IconSize = 70;
+        }
+
+        private void btnExportJson_MouseEnter(object sender, EventArgs e)
+        {
+            btnExportJson.IconSize = 48;
+        }
+
+        private void btnExportJson_MouseLeave(object sender, EventArgs e)
+        {
+            btnExportJson.IconSize = 40;
+        }
+
+        private void btnExportPdf_MouseEnter(object sender, EventArgs e)
+        {
+            btnExportPdf.IconSize = 48;
+        }
+
+        private void btnExportPdf_MouseLeave(object sender, EventArgs e)
+        {
+            btnExportPdf.IconSize = 40;
+        }
+
+        private void btnExportCsv_MouseEnter(object sender, EventArgs e)
+        {
+            btnExportCsv.IconSize = 48;
+        }
+
+        private void btnExportCsv_MouseLeave(object sender, EventArgs e)
+        {
+            btnExportCsv.IconSize = 40;
+        }
+
+        private string? ObtenerDirectorioOrigen()
+        {
+            using (FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog())
+            {
+                if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
+                {
+                    return folderBrowserDialog.SelectedPath;
+                }
+            }
+
+            return null;
+        }
+
+
     }
 }

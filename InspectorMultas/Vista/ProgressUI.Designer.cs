@@ -72,6 +72,8 @@
             btnHome.TabIndex = 8;
             btnHome.UseVisualStyleBackColor = true;
             btnHome.Click += btnHome_Click;
+            btnHome.MouseEnter += btnHome_MouseEnter;
+            btnHome.MouseLeave += btnHome_MouseLeave;
             // 
             // lblArchivoMoviendo
             // 
@@ -117,48 +119,62 @@
             // btnExportCsv
             // 
             btnExportCsv.FlatStyle = FlatStyle.Flat;
-            btnExportCsv.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            btnExportCsv.IconChar = FontAwesome.Sharp.IconChar.None;
+            btnExportCsv.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
+            btnExportCsv.IconChar = FontAwesome.Sharp.IconChar.FileCsv;
             btnExportCsv.IconColor = Color.Black;
             btnExportCsv.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            btnExportCsv.Location = new Point(800, 430);
+            btnExportCsv.IconSize = 40;
+            btnExportCsv.ImageAlign = ContentAlignment.MiddleLeft;
+            btnExportCsv.Location = new Point(710, 430);
             btnExportCsv.Margin = new Padding(3, 4, 3, 4);
             btnExportCsv.Name = "btnExportCsv";
-            btnExportCsv.Size = new Size(123, 54);
+            btnExportCsv.Size = new Size(213, 54);
             btnExportCsv.TabIndex = 19;
             btnExportCsv.Text = "Exportar a CSV";
             btnExportCsv.UseVisualStyleBackColor = true;
+            btnExportCsv.Click += btnExportCsv_Click;
+            btnExportCsv.MouseEnter += btnExportCsv_MouseEnter;
+            btnExportCsv.MouseLeave += btnExportCsv_MouseLeave;
             // 
             // btnExportPdf
             // 
             btnExportPdf.FlatStyle = FlatStyle.Flat;
-            btnExportPdf.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            btnExportPdf.IconChar = FontAwesome.Sharp.IconChar.None;
+            btnExportPdf.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
+            btnExportPdf.IconChar = FontAwesome.Sharp.IconChar.FilePdf;
             btnExportPdf.IconColor = Color.Black;
             btnExportPdf.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            btnExportPdf.Location = new Point(800, 373);
+            btnExportPdf.IconSize = 40;
+            btnExportPdf.ImageAlign = ContentAlignment.MiddleLeft;
+            btnExportPdf.Location = new Point(710, 373);
             btnExportPdf.Margin = new Padding(3, 4, 3, 4);
             btnExportPdf.Name = "btnExportPdf";
-            btnExportPdf.Size = new Size(123, 54);
+            btnExportPdf.Size = new Size(213, 54);
             btnExportPdf.TabIndex = 20;
             btnExportPdf.Text = "Exportar a PDF";
             btnExportPdf.UseVisualStyleBackColor = true;
             btnExportPdf.Click += btnExportPdf_Click;
+            btnExportPdf.MouseEnter += btnExportPdf_MouseEnter;
+            btnExportPdf.MouseLeave += btnExportPdf_MouseLeave;
             // 
             // btnExportJson
             // 
             btnExportJson.FlatStyle = FlatStyle.Flat;
-            btnExportJson.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            btnExportJson.IconChar = FontAwesome.Sharp.IconChar.None;
+            btnExportJson.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point);
+            btnExportJson.IconChar = FontAwesome.Sharp.IconChar.FileCode;
             btnExportJson.IconColor = Color.Black;
             btnExportJson.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            btnExportJson.Location = new Point(800, 313);
+            btnExportJson.IconSize = 40;
+            btnExportJson.ImageAlign = ContentAlignment.MiddleLeft;
+            btnExportJson.Location = new Point(710, 313);
             btnExportJson.Margin = new Padding(3, 4, 3, 4);
             btnExportJson.Name = "btnExportJson";
-            btnExportJson.Size = new Size(123, 54);
+            btnExportJson.Size = new Size(213, 54);
             btnExportJson.TabIndex = 21;
             btnExportJson.Text = "Exportar a JSON";
             btnExportJson.UseVisualStyleBackColor = true;
+            btnExportJson.Click += btnExportJson_Click;
+            btnExportJson.MouseEnter += btnExportJson_MouseEnter;
+            btnExportJson.MouseLeave += btnExportJson_MouseLeave;
             // 
             // lblProgressPercentage
             // 

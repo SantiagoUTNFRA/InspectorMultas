@@ -82,13 +82,15 @@
             btnHome.TextAlign = ContentAlignment.BottomCenter;
             btnHome.UseVisualStyleBackColor = true;
             btnHome.Click += btnHome_Click;
+            btnHome.MouseEnter += btnHome_MouseEnter;
+            btnHome.MouseLeave += btnHome_MouseLeave;
             // 
             // btnSaveChanges
             // 
             btnSaveChanges.Dock = DockStyle.Bottom;
             btnSaveChanges.FlatStyle = FlatStyle.Popup;
             btnSaveChanges.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point);
-            btnSaveChanges.ForeColor = Color.White;
+            btnSaveChanges.ForeColor = Color.Gray;
             btnSaveChanges.IconChar = FontAwesome.Sharp.IconChar.CheckCircle;
             btnSaveChanges.IconColor = Color.Gray;
             btnSaveChanges.IconFont = FontAwesome.Sharp.IconFont.Auto;
@@ -102,6 +104,8 @@
             btnSaveChanges.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnSaveChanges.UseVisualStyleBackColor = true;
             btnSaveChanges.Click += btnSaveChanges_Click;
+            btnSaveChanges.MouseEnter += btnSaveChanges_MouseEnter;
+            btnSaveChanges.MouseLeave += btnSaveChanges_MouseLeave;
             // 
             // lblTittle
             // 
@@ -159,7 +163,7 @@
             // btnSourceFolder
             // 
             btnSourceFolder.AutoEllipsis = true;
-            btnSourceFolder.BackColor = Color.DimGray;
+            btnSourceFolder.BackColor = Color.Gray;
             btnSourceFolder.FlatAppearance.BorderColor = Color.FromArgb(0, 0, 0, 0);
             btnSourceFolder.FlatAppearance.BorderSize = 0;
             btnSourceFolder.FlatStyle = FlatStyle.Popup;
@@ -168,16 +172,16 @@
             btnSourceFolder.IconChar = FontAwesome.Sharp.IconChar.Ellipsis;
             btnSourceFolder.IconColor = Color.FromArgb(20, 25, 25);
             btnSourceFolder.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            btnSourceFolder.IconSize = 28;
-            btnSourceFolder.ImageAlign = ContentAlignment.TopRight;
-            btnSourceFolder.Location = new Point(316, 50);
+            btnSourceFolder.IconSize = 25;
+            btnSourceFolder.Location = new Point(313, 50);
             btnSourceFolder.Margin = new Padding(0);
             btnSourceFolder.Name = "btnSourceFolder";
-            btnSourceFolder.Size = new Size(36, 29);
+            btnSourceFolder.Size = new Size(31, 29);
             btnSourceFolder.TabIndex = 21;
-            btnSourceFolder.TextAlign = ContentAlignment.MiddleRight;
             btnSourceFolder.UseVisualStyleBackColor = false;
             btnSourceFolder.Click += btnSourceFolder_Click;
+            btnSourceFolder.MouseEnter += btnSourceFolder_MouseEnter;
+            btnSourceFolder.MouseLeave += btnSourceFolder_MouseLeave;
             // 
             // txtSourcePath
             // 
@@ -185,7 +189,6 @@
             txtSourcePath.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             txtSourcePath.Location = new Point(83, 50);
             txtSourcePath.Name = "txtSourcePath";
-            txtSourcePath.PasswordChar = '*';
             txtSourcePath.Size = new Size(227, 29);
             txtSourcePath.TabIndex = 13;
             // 
@@ -316,7 +319,7 @@
             MaximizeBox = false;
             Name = "ConfigUI";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "ConfigUI";
+            Text = " ";
             panel1.ResumeLayout(false);
             pnlConfig.ResumeLayout(false);
             pnlConfig.PerformLayout();

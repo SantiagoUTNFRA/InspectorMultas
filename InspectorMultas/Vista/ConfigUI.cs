@@ -1,4 +1,5 @@
-﻿using InspectorMultas.Logica;
+﻿using FontAwesome.Sharp;
+using InspectorMultas.Logica;
 using WinSCP;
 
 namespace InspectorMultas
@@ -102,6 +103,36 @@ namespace InspectorMultas
             }
 
             return null!;
+        }
+
+        private void btnHome_MouseEnter(object sender, EventArgs e)
+        {
+            btnHome.IconSize = 80;
+        }
+
+        private void btnHome_MouseLeave(object sender, EventArgs e)
+        {
+            btnHome.IconSize = 70;
+        }
+
+        private void btnSaveChanges_MouseEnter(object sender, EventArgs e)
+        {
+            btnSaveChanges.IconSize = 95;
+        }
+
+        private void btnSaveChanges_MouseLeave(object sender, EventArgs e)
+        {
+            btnSaveChanges.IconSize = 85;
+        }
+
+        private void btnSourceFolder_MouseEnter(object sender, EventArgs e)
+        {
+            btnSourceFolder.IconSize = 30;
+        }
+
+        private void btnSourceFolder_MouseLeave(object sender, EventArgs e)
+        {
+            btnSourceFolder.IconSize = 25;
         }
     }
 }

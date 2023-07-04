@@ -64,5 +64,26 @@ namespace InspectorMultas
             return true;
         }
 
+        private void btnStartTransfer_MouseEnter(object sender, EventArgs e)
+        {
+            btnStartTransfer.IconSize = 95;
+        }
+
+        private void btnStartTransfer_MouseLeave(object sender, EventArgs e)
+        {
+            btnStartTransfer.IconSize = 85;
+
+        }
+
+        private void btnConfig_MouseEnter(object sender, EventArgs e)
+        {
+            btnConfig.IconSize = 80;
+        }
+
+        private void btnConfig_MouseLeave(object sender, EventArgs e)
+        {
+            btnConfig.IconSize = 70;
+
+        }
     }
 }
