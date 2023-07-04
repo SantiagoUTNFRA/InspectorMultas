@@ -52,19 +52,19 @@ namespace InspectorMultas
         {
             try
             {
-                _transferenciaSftp.TransferenciaProgreso += TransferenciaSftp_TransferenciaProgreso;
+                _transferenciaSftp.TransferenciaProgreso += TransferenciaSftp_TransferenciaProgreso!;
 
                 _transferenciaSftp.ArchivoTransferido += (sender, e) =>
                 {
-                    Invoke((Action)(() =>
+                    Invoke(() =>
                     {
-                        string nombreArchivo = Path.GetFileName(((ArchivoTransferidoEventArgs)e).FileName);
+                        string nombreArchivo = Path.GetFileName(e.FileName);
                         listBox1.Items.Add(nombreArchivo);
                         _subidaArchivo[nombreArchivo] = DateTime.Now;
-                    }));
+                    });
                 };
 
-                System.Threading.Tasks.Task.Run(() => _transferenciaSftp.RealizarTransferencia(_transferenciaSftp.GetDirectorioOrigen()));
+                Task.Run(() => _transferenciaSftp.RealizarTransferencia(_transferenciaSftp.GetDirectorioOrigen()));
             }
             catch (Exception ex)
             {
@@ -89,38 +89,44 @@ namespace InspectorMultas
 
         private void ExportarInforme(string rutaArchivo)
         {
-            Document document = new Document();
+            Document document = new();
             PdfWriter writer = PdfWriter.GetInstance(document, new FileStream(rutaArchivo, FileMode.Create));
             document.Open();
 
             // Establecer la fuente
             BaseFont baseFont = BaseFont.CreateFont(BaseFont.TIMES_ROMAN, BaseFont.CP1252, BaseFont.NOT_EMBEDDED);
-            Font fontTitle = new Font(baseFont, 20, iTextSharp.text.Font.BOLD);
-            Font fontHeader = new Font(baseFont, 18, iTextSharp.text.Font.NORMAL, new BaseColor(20, 25, 25));
-            Font fontBody = new Font(baseFont, 16, iTextSharp.text.Font.NORMAL);
-            Font fontFirma = new Font(baseFont, 18, iTextSharp.text.Font.NORMAL, new BaseColor(20, 25, 25));
+            Font fontTitle = new(baseFont, 20, iTextSharp.text.Font.BOLD);
+            Font fontHeader = new(baseFont, 18, iTextSharp.text.Font.NORMAL, new BaseColor(20, 25, 25));
+            Font fontBody = new(baseFont, 16, iTextSharp.text.Font.NORMAL);
+            Font fontFirma = new(baseFont, 18, iTextSharp.text.Font.NORMAL, new BaseColor(20, 25, 25));
 
             // Título del documento
-            Paragraph title = new Paragraph("Vial Control - Informe de transferencias de archivos", fontTitle);
-            title.Alignment = Element.ALIGN_CENTER;
+            Paragraph title = new("Vial Control - Informe de transferencias de archivos", fontTitle)
+            {
+                Alignment = Element.ALIGN_CENTER
+            };
             document.Add(title);
-
-            // Agregar espacio después del título
             document.Add(new Paragraph("\n"));
 
-            PdfPTable table = new PdfPTable(3);  // Crea una tabla con 3 columnas
+            PdfPTable table = new(3);
 
-            // Agregar encabezados de las columnas
-            PdfPCell cell = new PdfPCell(new Phrase("Nombre del archivo", fontHeader));
-            cell.BackgroundColor = new BaseColor(210, 210, 210);
+            //encabezados de las columnas
+            PdfPCell cell = new(new Phrase("Nombre del archivo", fontHeader))
+            {
+                BackgroundColor = new BaseColor(210, 210, 210)
+            };
             table.AddCell(cell);
 
-            cell = new PdfPCell(new Phrase("Estado", fontHeader));
-            cell.BackgroundColor = new BaseColor(210, 210, 210);
+            cell = new PdfPCell(new Phrase("Estado", fontHeader))
+            {
+                BackgroundColor = new BaseColor(210, 210, 210)
+            };
             table.AddCell(cell);
 
-            cell = new PdfPCell(new Phrase("Fecha y Hora de Subida", fontHeader));
-            cell.BackgroundColor = new BaseColor(210, 210, 210);
+            cell = new PdfPCell(new Phrase("Fecha y Hora de Subida", fontHeader))
+            {
+                BackgroundColor = new BaseColor(210, 210, 210)
+            };
             table.AddCell(cell);
 
             // Itera a través de los archivos a mover
@@ -128,42 +134,44 @@ namespace InspectorMultas
             {
                 table.AddCell(new Phrase(nombreArchivo, fontBody));
 
-                // Comprueba si el archivo ha sido transferido correctamente
                 if (listBox1.Items.Contains(nombreArchivo))
                 {
                     cell = new PdfPCell(new Phrase("Transferido correctamente", fontBody));
-                    //cell.BackgroundColor = new BaseColor(210, 210, 210);
                     table.AddCell(cell);
-
                     cell = new PdfPCell(new Phrase(_subidaArchivo[nombreArchivo].ToString(), fontBody));
-                    //cell.BackgroundColor = new BaseColor(210, 210, 210);
                     table.AddCell(cell);
                 }
                 else
                 {
-                    cell = new PdfPCell(new Phrase("No transferido", fontBody));
-                    cell.BackgroundColor = new BaseColor(255, 102, 102);  // Color de fondo rojo claro para destacar el error
+                    cell = new PdfPCell(new Phrase("No transferido", fontBody))
+                    {
+                        BackgroundColor = new BaseColor(255, 102, 102)
+                    };
                     table.AddCell(cell);
 
-                    cell = new PdfPCell();  // Agrega una celda vacía ya que no hay fecha y hora de subida para los archivos no transferidos
-                    cell.BackgroundColor = new BaseColor(210, 210, 210);
+                    cell = new PdfPCell
+                    {
+                        BackgroundColor = new BaseColor(210, 210, 210)
+                    };
                     table.AddCell(cell);
                 }
             }
 
-            document.Add(table);  // Agrega la tabla al documento
-
-            // Agregar espacio después de la tabla
+            document.Add(table);
             document.Add(new Paragraph("\n"));
 
             // Agregar fecha y hora del informe
-            Paragraph date = new Paragraph($"Informe generado el: {DateTime.Now.ToString()}", fontBody);
-            date.Alignment = Element.ALIGN_RIGHT;
+            Paragraph date = new($"Informe generado el: {DateTime.Now}", fontBody)
+            {
+                Alignment = Element.ALIGN_RIGHT
+            };
             document.Add(date);
 
             // Agregar firma de la empresa
-            Paragraph firma = new Paragraph("\n\nVial Control", fontFirma);
-            firma.Alignment = Element.ALIGN_RIGHT;
+            Paragraph firma = new("\n\nVial Control", fontFirma)
+            {
+                Alignment = Element.ALIGN_RIGHT
+            };
             document.Add(firma);
 
             document.Close();
@@ -171,12 +179,14 @@ namespace InspectorMultas
 
         private List<InformeFila> CrearInforme()
         {
-            List<InformeFila> informe = new List<InformeFila>();
+            List<InformeFila> informe = new();
 
             foreach (string nombreArchivo in _transferenciaSftp.GetArchivosAMover())
             {
-                InformeFila fila = new InformeFila();
-                fila.NombreDelArchivo = nombreArchivo;
+                InformeFila fila = new()
+                {
+                    NombreDelArchivo = nombreArchivo
+                };
                 if (listBox1.Items.Contains(nombreArchivo))
                 {
                     fila.Estado = "Transferido correctamente";
@@ -210,11 +220,9 @@ namespace InspectorMultas
             }
         }
 
-
-
         private void btnExportPdf_Click(object sender, EventArgs e)
         {
-            string directorio = ObtenerDirectorioOrigen();
+            string directorio = ObtenerDirectorioOrigen()!;
             if (directorio != null)
             {
                 ExportarInforme(Path.Combine(directorio, "Informe.pdf"));
@@ -242,7 +250,21 @@ namespace InspectorMultas
             }
         }
 
+        private string? ObtenerDirectorioOrigen()
+        {
+            using (FolderBrowserDialog folderBrowserDialog = new())
+            {
+                if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
+                {
+                    return folderBrowserDialog.SelectedPath;
+                }
+            }
+
+            return null;
+        }
+
         //////////////////////////////////////////////////////////
+        
         private void btnHome_MouseEnter(object sender, EventArgs e)
         {
             btnHome.IconSize = 80;
@@ -282,20 +304,5 @@ namespace InspectorMultas
         {
             btnExportCsv.IconSize = 40;
         }
-
-        private string? ObtenerDirectorioOrigen()
-        {
-            using (FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog())
-            {
-                if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
-                {
-                    return folderBrowserDialog.SelectedPath;
-                }
-            }
-
-            return null;
-        }
-
-
     }
 }

@@ -67,7 +67,6 @@ namespace InspectorMultas.Logica
 
             using (Session session = new())
             {
-                // Suscríbete al evento FileTransferProgress
                 session.FileTransferProgress += Session_FileTransferProgress;
 
                 session.Open(sessionOptions);
@@ -86,33 +85,47 @@ namespace InspectorMultas.Logica
                 transferResult.Check();
 
                 string logFilePath = Path.Combine(directorioOrigen, "transferencias.txt");
+                Directory.CreateDirectory(directorioOrigen);
 
-                // Mostrar resultados
-                using (StreamWriter streamWriter = new(logFilePath, true))
+                // Crea el archivo si no existe
+                if (!File.Exists(logFilePath))
                 {
-                    int i = 0;
-                    foreach (TransferEventArgs transfer in transferResult.Transfers)
+                    File.Create(logFilePath).Dispose();
+                }
+
+                try
+                {
+                    // Mostrar resultados
+                    using (StreamWriter streamWriter = new(logFilePath, true))
                     {
-                        if (transfer.Error == null)
+                        int i = 0;
+                        foreach (TransferEventArgs transfer in transferResult.Transfers)
                         {
-                            string logMessage = $"Correcto: {transfer.FileName}";
-                            streamWriter.WriteLine(logMessage);
+                            if (transfer.Error == null)
+                            {
+                                string logMessage = $"Correcto: {transfer.FileName}";
+                                streamWriter.WriteLine(logMessage);
 
-                            // Disparar el evento
-                            ArchivoTransferido?.Invoke(this, new ArchivoTransferidoEventArgs(transfer.FileName));
+                                // Disparar el evento
+                                ArchivoTransferido?.Invoke(this, new ArchivoTransferidoEventArgs(transfer.FileName));
+                            }
+
+                            else
+                            {
+                                string logMessage = $"Error al enviar el archivo {transfer.FileName}: {transfer.Error.Message}";
+                                streamWriter.WriteLine(logMessage);
+                            }
+
+                            // Notificar el progreso
+                            int porcentaje = (i + 1) * 100 / transferResult.Transfers.Count;
+                            OnTransferenciaProgreso(porcentaje, transfer.FileName);
+                            i++;
                         }
-
-                        else
-                        {
-                            string logMessage = $"Error al enviar el archivo {transfer.FileName}: {transfer.Error.Message}";
-                            streamWriter.WriteLine(logMessage);
-                        }
-
-                        // Notificar el progreso
-                        int porcentaje = (i + 1) * 100 / transferResult.Transfers.Count;
-                        OnTransferenciaProgreso(porcentaje, transfer.FileName);
-                        i++;
                     }
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception($"Error al escribir el archivo de log: {ex.Message}");
                 }
             }
         }
