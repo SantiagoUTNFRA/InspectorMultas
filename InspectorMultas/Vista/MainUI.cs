@@ -1,5 +1,7 @@
 using InspectorMultas.Logica;
+using Newtonsoft.Json;
 using System.Net.NetworkInformation;
+using WinSCP;
 
 namespace InspectorMultas
 {
@@ -54,6 +56,18 @@ namespace InspectorMultas
                 return false;
             }
 
+            // Cargar configuración
+            SftpConfig config = LoadConfig();
+
+            // Verificar que los valores de configuración no sean nulos o vacíos
+            if (string.IsNullOrWhiteSpace(config.HostName) || string.IsNullOrWhiteSpace(config.UserName) ||
+                string.IsNullOrWhiteSpace(config.Password) || string.IsNullOrWhiteSpace(config.SshHostKeyFingerprint) ||
+                string.IsNullOrWhiteSpace(config.RemotePath) || string.IsNullOrWhiteSpace(config.DirectorioOrigen))
+            {
+                MessageBox.Show("Hay valores de configuración que están vacíos. Por favor, complete todos los campos en la configuración.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
             // Verificar la conexión a Internet
             if (!NetworkInterface.GetIsNetworkAvailable())
             {
@@ -61,8 +75,57 @@ namespace InspectorMultas
                 return false;
             }
 
+            // Verificar la conectividad al servidor SFTP
+            if (!VerificarConectividadSftp(config))
+            {
+                return false;
+            }
+
+            // Todo está correcto
             return true;
         }
+
+
+        private bool VerificarConectividadSftp(SftpConfig config)
+        {
+            try
+            {
+                // Configurar las opciones de la sesión
+                SessionOptions sessionOptions = new()
+                {
+                    Protocol = config.Protocol,
+                    HostName = config.HostName,
+                    UserName = config.UserName,
+                    Password = config.Password,
+                    PortNumber = config.PortNumber,
+                    SshHostKeyFingerprint = config.SshHostKeyFingerprint
+                };
+
+                using (Session session = new())
+                {
+                    // Intentar abrir una sesión
+                    session.Open(sessionOptions);
+                }
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al conectar al servidor: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+        }
+
+
+        private SftpConfig LoadConfig()
+        {
+            using (StreamReader file = File.OpenText(TransferSftp.ConfigFilePath))
+            {
+                JsonSerializer serializer = new JsonSerializer();
+                return (SftpConfig)serializer.Deserialize(file, typeof(SftpConfig))!;
+            }
+        }
+
 
         private void btnStartTransfer_MouseEnter(object sender, EventArgs e)
         {

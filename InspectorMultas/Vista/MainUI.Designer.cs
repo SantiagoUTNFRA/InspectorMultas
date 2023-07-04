@@ -172,9 +172,9 @@
             // iconPictureBox1
             // 
             iconPictureBox1.BackColor = Color.Gray;
-            iconPictureBox1.ForeColor = SystemColors.ControlText;
+            iconPictureBox1.ForeColor = Color.Chartreuse;
             iconPictureBox1.IconChar = FontAwesome.Sharp.IconChar.Check;
-            iconPictureBox1.IconColor = SystemColors.ControlText;
+            iconPictureBox1.IconColor = Color.Chartreuse;
             iconPictureBox1.IconFont = FontAwesome.Sharp.IconFont.Auto;
             iconPictureBox1.IconSize = 42;
             iconPictureBox1.Location = new Point(16, 131);

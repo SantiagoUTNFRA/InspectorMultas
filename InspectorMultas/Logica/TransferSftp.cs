@@ -145,8 +145,6 @@ namespace InspectorMultas.Logica
             TransferenciaProgreso?.Invoke(this, new TransferenciaProgresoEventArgs(porcentaje, nombreArchivo));
         }
 
-
-
         public string GetDirectorioOrigen()
         {
             return _config.DirectorioOrigen;
