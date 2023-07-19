@@ -49,6 +49,13 @@ namespace InspectorMultas
             }
             else
             {
+                // Cargar configuración
+                SftpConfig config = LoadConfig();
+
+                // Procesa los archivos en el directorio de origen, los copia al directorio de trabajo y cambia sus nombres
+                TransferSftp transferenciaFtp = new();
+                transferenciaFtp.ProcessFilesInWorkDirectory(config.DirectorioOrigen ,config.DirectorioTrabajo);
+
                 lblTitulo.Text = "Transferencia en progreso";
                 this.Hide();
                 ProgressUI.Instance.ResetUI(); // Restablecer la interfaz de usuario

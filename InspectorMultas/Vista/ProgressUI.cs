@@ -63,13 +63,17 @@ namespace InspectorMultas
                     });
                 };
 
-                Task.Run(() => _transferenciaSftp.RealizarTransferencia(_transferenciaSftp.GetDirectorioOrigen()));
+                // Cargar configuración
+                SftpConfig config = _transferenciaSftp.LoadConfig();
+
+                Task.Run(() => _transferenciaSftp.RealizarTransferencia(config.DirectorioTrabajo));
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
         private void TransferenciaSftp_TransferenciaProgreso(object sender, TransferenciaProgresoEventArgs e)
         {

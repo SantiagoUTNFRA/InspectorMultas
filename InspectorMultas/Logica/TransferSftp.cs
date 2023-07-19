@@ -1,5 +1,7 @@
 ﻿using Newtonsoft.Json;
 using WinSCP;
+using System.Text.RegularExpressions;
+
 
 namespace InspectorMultas.Logica
 {
@@ -169,6 +171,33 @@ namespace InspectorMultas.Logica
 
             return archivosAMover;
         }
+
+        public void ProcessFilesInWorkDirectory(string sourceDirectory, string workDirectory)
+        {
+            var files = Directory.GetFiles(sourceDirectory);
+
+            foreach (var file in files)
+            {
+                // Check if it's a MP4
+                if (Path.GetExtension(file) == ".mp4")
+                {
+                    // Split the original filename into its components
+                    var oldFilenameComponents = Path.GetFileNameWithoutExtension(file).Split('_');
+
+                    // Get the numeric part from the first component
+                    string id = Regex.Match(oldFilenameComponents[0], @"\d+").Value;
+
+                    // Form the new filename
+                    var newFilename = $"{id}_{oldFilenameComponents[3]}_A_T000.mp4";
+                    var destinationFile = Path.Combine(workDirectory, newFilename);
+
+                    // Copy the file to the working directory
+                    File.Copy(file, destinationFile);
+                }
+            }
+        }
+
+
 
     }
 }
