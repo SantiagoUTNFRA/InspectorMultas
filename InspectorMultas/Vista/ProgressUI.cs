@@ -32,6 +32,7 @@ namespace InspectorMultas
             _transferenciaSftp = new TransferSftp();
             _subidaArchivo = new Dictionary<string, DateTime>();
         }
+
         public void ResetUI()
         {
             progressBar1.Value = 0;
@@ -40,10 +41,8 @@ namespace InspectorMultas
             lblProgressPercentage.Text = "0%";
         }
 
-
         private void btnHome_Click(object sender, EventArgs e)
         {
-
             this.Hide();
             MainUI.Instance.Show();
         }
@@ -263,8 +262,8 @@ namespace InspectorMultas
             return null;
         }
 
-        //////////////////////////////////////////////////////////
-        
+        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
         private void btnHome_MouseEnter(object sender, EventArgs e)
         {
             btnHome.IconSize = 80;

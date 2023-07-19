@@ -34,6 +34,8 @@
             lblTittle = new Label();
             pnlConfig = new Panel();
             gbxConfigFolder = new GroupBox();
+            label1 = new Label();
+            txtWorkDirectory = new TextBox();
             lblRemotePath = new Label();
             btnSourceFolder = new FontAwesome.Sharp.IconButton();
             txtSourcePath = new TextBox();
@@ -47,6 +49,7 @@
             lblPortNumber = new Label();
             txtPortNumber = new TextBox();
             panel3 = new Panel();
+            btnWorkDirectory = new FontAwesome.Sharp.IconButton();
             panel1.SuspendLayout();
             pnlConfig.SuspendLayout();
             gbxConfigFolder.SuspendLayout();
@@ -133,6 +136,9 @@
             // 
             // gbxConfigFolder
             // 
+            gbxConfigFolder.Controls.Add(btnWorkDirectory);
+            gbxConfigFolder.Controls.Add(label1);
+            gbxConfigFolder.Controls.Add(txtWorkDirectory);
             gbxConfigFolder.Controls.Add(lblRemotePath);
             gbxConfigFolder.Controls.Add(btnSourceFolder);
             gbxConfigFolder.Controls.Add(txtSourcePath);
@@ -141,12 +147,33 @@
             gbxConfigFolder.FlatStyle = FlatStyle.Flat;
             gbxConfigFolder.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
             gbxConfigFolder.ForeColor = Color.FromArgb(20, 25, 25);
-            gbxConfigFolder.Location = new Point(6, 181);
+            gbxConfigFolder.Location = new Point(6, 126);
             gbxConfigFolder.Name = "gbxConfigFolder";
-            gbxConfigFolder.Size = new Size(368, 222);
+            gbxConfigFolder.Size = new Size(390, 222);
             gbxConfigFolder.TabIndex = 20;
             gbxConfigFolder.TabStop = false;
             gbxConfigFolder.Text = "Carpeta";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            label1.ForeColor = Color.FromArgb(20, 25, 25);
+            label1.Location = new Point(11, 169);
+            label1.Name = "label1";
+            label1.Size = new Size(64, 21);
+            label1.TabIndex = 23;
+            label1.Text = "Trabajo";
+            label1.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // txtWorkDirectory
+            // 
+            txtWorkDirectory.BackColor = Color.Gray;
+            txtWorkDirectory.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold, GraphicsUnit.Point);
+            txtWorkDirectory.Location = new Point(83, 168);
+            txtWorkDirectory.Name = "txtWorkDirectory";
+            txtWorkDirectory.Size = new Size(260, 27);
+            txtWorkDirectory.TabIndex = 22;
             // 
             // lblRemotePath
             // 
@@ -173,7 +200,7 @@
             btnSourceFolder.IconColor = Color.FromArgb(20, 25, 25);
             btnSourceFolder.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btnSourceFolder.IconSize = 25;
-            btnSourceFolder.Location = new Point(313, 50);
+            btnSourceFolder.Location = new Point(346, 50);
             btnSourceFolder.Margin = new Padding(0);
             btnSourceFolder.Name = "btnSourceFolder";
             btnSourceFolder.Size = new Size(31, 29);
@@ -186,10 +213,11 @@
             // txtSourcePath
             // 
             txtSourcePath.BackColor = Color.Gray;
-            txtSourcePath.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            txtSourcePath.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold, GraphicsUnit.Point);
             txtSourcePath.Location = new Point(83, 50);
             txtSourcePath.Name = "txtSourcePath";
-            txtSourcePath.Size = new Size(227, 29);
+            txtSourcePath.ReadOnly = true;
+            txtSourcePath.Size = new Size(260, 27);
             txtSourcePath.TabIndex = 13;
             // 
             // lblSourcePath
@@ -207,10 +235,10 @@
             // txtRemotePath
             // 
             txtRemotePath.BackColor = Color.Gray;
-            txtRemotePath.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            txtRemotePath.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold, GraphicsUnit.Point);
             txtRemotePath.Location = new Point(83, 108);
             txtRemotePath.Name = "txtRemotePath";
-            txtRemotePath.Size = new Size(227, 29);
+            txtRemotePath.Size = new Size(260, 27);
             txtRemotePath.TabIndex = 17;
             // 
             // gbxConfigServer
@@ -223,9 +251,9 @@
             gbxConfigServer.Controls.Add(txtPortNumber);
             gbxConfigServer.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
             gbxConfigServer.ForeColor = Color.FromArgb(20, 25, 25);
-            gbxConfigServer.Location = new Point(454, 181);
+            gbxConfigServer.Location = new Point(437, 126);
             gbxConfigServer.Name = "gbxConfigServer";
-            gbxConfigServer.Size = new Size(368, 222);
+            gbxConfigServer.Size = new Size(390, 222);
             gbxConfigServer.TabIndex = 19;
             gbxConfigServer.TabStop = false;
             gbxConfigServer.Text = "Server";
@@ -245,20 +273,21 @@
             // txtHostName
             // 
             txtHostName.BackColor = Color.Gray;
-            txtHostName.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            txtHostName.ForeColor = Color.White;
+            txtHostName.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold, GraphicsUnit.Point);
+            txtHostName.ForeColor = SystemColors.WindowText;
             txtHostName.Location = new Point(95, 50);
             txtHostName.Name = "txtHostName";
-            txtHostName.Size = new Size(227, 29);
+            txtHostName.Size = new Size(260, 27);
             txtHostName.TabIndex = 9;
             // 
             // txtUserName
             // 
             txtUserName.BackColor = Color.Gray;
-            txtUserName.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            txtUserName.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold, GraphicsUnit.Point);
+            txtUserName.ForeColor = SystemColors.WindowText;
             txtUserName.Location = new Point(95, 108);
             txtUserName.Name = "txtUserName";
-            txtUserName.Size = new Size(227, 29);
+            txtUserName.Size = new Size(260, 27);
             txtUserName.TabIndex = 10;
             // 
             // lblUserName
@@ -288,10 +317,10 @@
             // txtPortNumber
             // 
             txtPortNumber.BackColor = Color.Gray;
-            txtPortNumber.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            txtPortNumber.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold, GraphicsUnit.Point);
             txtPortNumber.Location = new Point(95, 163);
             txtPortNumber.Name = "txtPortNumber";
-            txtPortNumber.Size = new Size(227, 29);
+            txtPortNumber.Size = new Size(260, 27);
             txtPortNumber.TabIndex = 14;
             // 
             // panel3
@@ -304,6 +333,27 @@
             panel3.Name = "panel3";
             panel3.Size = new Size(834, 100);
             panel3.TabIndex = 16;
+            // 
+            // btnWorkDirectory
+            // 
+            btnWorkDirectory.AutoEllipsis = true;
+            btnWorkDirectory.BackColor = Color.Gray;
+            btnWorkDirectory.FlatAppearance.BorderColor = Color.FromArgb(0, 0, 0, 0);
+            btnWorkDirectory.FlatAppearance.BorderSize = 0;
+            btnWorkDirectory.FlatStyle = FlatStyle.Popup;
+            btnWorkDirectory.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point);
+            btnWorkDirectory.ForeColor = Color.White;
+            btnWorkDirectory.IconChar = FontAwesome.Sharp.IconChar.Ellipsis;
+            btnWorkDirectory.IconColor = Color.FromArgb(20, 25, 25);
+            btnWorkDirectory.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            btnWorkDirectory.IconSize = 25;
+            btnWorkDirectory.Location = new Point(346, 166);
+            btnWorkDirectory.Margin = new Padding(0);
+            btnWorkDirectory.Name = "btnWorkDirectory";
+            btnWorkDirectory.Size = new Size(31, 29);
+            btnWorkDirectory.TabIndex = 24;
+            btnWorkDirectory.UseVisualStyleBackColor = false;
+            btnWorkDirectory.Click += btnWorkDirectory_Click;
             // 
             // ConfigUI
             // 
@@ -319,7 +369,6 @@
             MaximizeBox = false;
             Name = "ConfigUI";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = " ";
             panel1.ResumeLayout(false);
             pnlConfig.ResumeLayout(false);
             pnlConfig.PerformLayout();
@@ -351,5 +400,8 @@
         private GroupBox gbxConfigServer;
         private GroupBox gbxConfigFolder;
         private FontAwesome.Sharp.IconButton btnSourceFolder;
+        private Label label1;
+        private TextBox txtWorkDirectory;
+        private FontAwesome.Sharp.IconButton btnWorkDirectory;
     }
 }

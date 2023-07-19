@@ -8,7 +8,6 @@ namespace InspectorMultas.Logica
         public static string ConfigFilePath { get; } = "appsettings.json";
         private SftpConfig _config;
         private const string RemotePath = "/sin_primitiva/test/";
-
         public event EventHandler<TransferenciaProgresoEventArgs> TransferenciaProgreso;
         public event EventHandler<ArchivoTransferidoEventArgs> ArchivoTransferido;
 
@@ -25,19 +24,26 @@ namespace InspectorMultas.Logica
                     PortNumber = 10022,
                     SshHostKeyFingerprint = "ssh-rsa 2048 isZ3ChcOljIL3Xn+WufO5yXBs0qSCwWQX/9BmpPEjFM",
                     RemotePath = "",
-                    DirectorioOrigen = ""
+                    DirectorioOrigen = "",
+                    DirectorioTrabajo = ""
                 };
                 SaveConfiguration(defaultConfig);
                 _config = defaultConfig;
             }
             else
             {
-                using (StreamReader file = File.OpenText(ConfigFilePath))
-                {
-                    JsonSerializer serializer = new JsonSerializer();
-                    var sftpConfig = (SftpConfig)serializer.Deserialize(file, typeof(SftpConfig))!;
-                    _config = sftpConfig;
-                }
+                LoadConfig();
+            }
+        }
+
+        public SftpConfig LoadConfig()
+        {
+            using (StreamReader file = File.OpenText(ConfigFilePath))
+            {
+                JsonSerializer serializer = new JsonSerializer();
+                var sftpConfig = (SftpConfig)serializer.Deserialize(file, typeof(SftpConfig))!;
+                _config = sftpConfig;
+                return _config;
             }
         }
 

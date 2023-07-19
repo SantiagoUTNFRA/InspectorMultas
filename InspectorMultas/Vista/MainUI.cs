@@ -14,6 +14,14 @@ namespace InspectorMultas
             InitializeComponent();
         }
 
+        private void MainUI_Load(object sender, EventArgs e)
+        {
+            btnFileConfig.IconChar = FontAwesome.Sharp.IconChar.ArrowsRotate;
+            btnConfigOk.IconChar = FontAwesome.Sharp.IconChar.ArrowsRotate;
+            btnInternetConnection.IconChar = FontAwesome.Sharp.IconChar.ArrowsRotate;
+            btnSftpConnection.IconChar = FontAwesome.Sharp.IconChar.ArrowsRotate;
+        }
+
         public static MainUI Instance
         {
             get
@@ -52,6 +60,7 @@ namespace InspectorMultas
         {
             if (!File.Exists(TransferSftp.ConfigFilePath))
             {
+                btnFileConfig.IconChar = FontAwesome.Sharp.IconChar.ExclamationTriangle;
                 MessageBox.Show("El archivo de configuración no existe.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
@@ -64,6 +73,7 @@ namespace InspectorMultas
                 string.IsNullOrWhiteSpace(config.Password) || string.IsNullOrWhiteSpace(config.SshHostKeyFingerprint) ||
                 string.IsNullOrWhiteSpace(config.RemotePath) || string.IsNullOrWhiteSpace(config.DirectorioOrigen))
             {
+                btnConfigOk.IconChar = FontAwesome.Sharp.IconChar.ExclamationTriangle;
                 MessageBox.Show("Hay valores de configuración que están vacíos. Por favor, complete todos los campos en la configuración.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
@@ -71,20 +81,26 @@ namespace InspectorMultas
             // Verificar la conexión a Internet
             if (!NetworkInterface.GetIsNetworkAvailable())
             {
+                btnInternetConnection.IconChar = FontAwesome.Sharp.IconChar.ExclamationTriangle;
                 MessageBox.Show("No hay conexión a Internet.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
-
+            
             // Verificar la conectividad al servidor SFTP
             if (!VerificarConectividadSftp(config))
             {
+                btnSftpConnection.IconChar = FontAwesome.Sharp.IconChar.ExclamationTriangle;
                 return false;
             }
 
             // Todo está correcto
+            btnFileConfig.IconChar = FontAwesome.Sharp.IconChar.Check;
+            btnConfigOk.IconChar = FontAwesome.Sharp.IconChar.Check;
+            btnInternetConnection.IconChar = FontAwesome.Sharp.IconChar.Check;
+            btnSftpConnection.IconChar = FontAwesome.Sharp.IconChar.Check;
+
             return true;
         }
-
 
         private bool VerificarConectividadSftp(SftpConfig config)
         {
@@ -116,8 +132,7 @@ namespace InspectorMultas
             }
         }
 
-
-        private SftpConfig LoadConfig()
+        public SftpConfig LoadConfig()
         {
             using (StreamReader file = File.OpenText(TransferSftp.ConfigFilePath))
             {
@@ -148,5 +163,7 @@ namespace InspectorMultas
             btnConfig.IconSize = 70;
 
         }
+
+
     }
 }

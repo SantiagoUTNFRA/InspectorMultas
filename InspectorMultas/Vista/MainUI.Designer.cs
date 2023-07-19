@@ -32,20 +32,25 @@
             btnStartTransfer = new FontAwesome.Sharp.IconButton();
             btnConfig = new FontAwesome.Sharp.IconButton();
             panel1 = new Panel();
-            lblEstadoTransferencia = new Label();
             panel2 = new Panel();
-            iconPictureBox3 = new FontAwesome.Sharp.IconPictureBox();
-            iconPictureBox2 = new FontAwesome.Sharp.IconPictureBox();
-            iconPictureBox1 = new FontAwesome.Sharp.IconPictureBox();
+            btnSftpConnection = new FontAwesome.Sharp.IconPictureBox();
+            label5 = new Label();
+            btnFileConfig = new FontAwesome.Sharp.IconPictureBox();
+            label4 = new Label();
+            btnUpdateList = new FontAwesome.Sharp.IconPictureBox();
+            btnInternetConnection = new FontAwesome.Sharp.IconPictureBox();
+            btnConfigOk = new FontAwesome.Sharp.IconPictureBox();
             label3 = new Label();
             label2 = new Label();
             label1 = new Label();
             panel3 = new Panel();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)iconPictureBox3).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)iconPictureBox2).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)iconPictureBox1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)btnSftpConnection).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)btnFileConfig).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)btnUpdateList).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)btnInternetConnection).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)btnConfigOk).BeginInit();
             panel3.SuspendLayout();
             SuspendLayout();
             // 
@@ -112,25 +117,16 @@
             panel1.Size = new Size(100, 511);
             panel1.TabIndex = 10;
             // 
-            // lblEstadoTransferencia
-            // 
-            lblEstadoTransferencia.AutoSize = true;
-            lblEstadoTransferencia.BackColor = Color.Gray;
-            lblEstadoTransferencia.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            lblEstadoTransferencia.ForeColor = Color.FromArgb(20, 25, 25);
-            lblEstadoTransferencia.Location = new Point(16, 68);
-            lblEstadoTransferencia.Name = "lblEstadoTransferencia";
-            lblEstadoTransferencia.Size = new Size(189, 21);
-            lblEstadoTransferencia.TabIndex = 12;
-            lblEstadoTransferencia.Text = "Transferencia no iniciada";
-            // 
             // panel2
             // 
             panel2.BackColor = Color.Gray;
-            panel2.Controls.Add(iconPictureBox3);
-            panel2.Controls.Add(iconPictureBox2);
-            panel2.Controls.Add(lblEstadoTransferencia);
-            panel2.Controls.Add(iconPictureBox1);
+            panel2.Controls.Add(btnSftpConnection);
+            panel2.Controls.Add(label5);
+            panel2.Controls.Add(btnFileConfig);
+            panel2.Controls.Add(label4);
+            panel2.Controls.Add(btnUpdateList);
+            panel2.Controls.Add(btnInternetConnection);
+            panel2.Controls.Add(btnConfigOk);
             panel2.Controls.Add(label3);
             panel2.Controls.Add(lblTitulo);
             panel2.Controls.Add(label2);
@@ -141,54 +137,104 @@
             panel2.Size = new Size(834, 408);
             panel2.TabIndex = 13;
             // 
-            // iconPictureBox3
+            // btnSftpConnection
             // 
-            iconPictureBox3.BackColor = Color.Gray;
-            iconPictureBox3.ForeColor = SystemColors.ControlText;
-            iconPictureBox3.IconChar = FontAwesome.Sharp.IconChar.TimesRectangle;
-            iconPictureBox3.IconColor = SystemColors.ControlText;
-            iconPictureBox3.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            iconPictureBox3.IconSize = 42;
-            iconPictureBox3.Location = new Point(16, 271);
-            iconPictureBox3.Name = "iconPictureBox3";
-            iconPictureBox3.Size = new Size(42, 42);
-            iconPictureBox3.TabIndex = 24;
-            iconPictureBox3.TabStop = false;
+            btnSftpConnection.BackColor = Color.Gray;
+            btnSftpConnection.ForeColor = SystemColors.ControlText;
+            btnSftpConnection.IconChar = FontAwesome.Sharp.IconChar.ArrowsRotate;
+            btnSftpConnection.IconColor = SystemColors.ControlText;
+            btnSftpConnection.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            btnSftpConnection.IconSize = 42;
+            btnSftpConnection.Location = new Point(376, 122);
+            btnSftpConnection.Name = "btnSftpConnection";
+            btnSftpConnection.Size = new Size(42, 42);
+            btnSftpConnection.TabIndex = 28;
+            btnSftpConnection.TabStop = false;
             // 
-            // iconPictureBox2
+            // label5
             // 
-            iconPictureBox2.BackColor = Color.Gray;
-            iconPictureBox2.ForeColor = SystemColors.ControlText;
-            iconPictureBox2.IconChar = FontAwesome.Sharp.IconChar.Check;
-            iconPictureBox2.IconColor = SystemColors.ControlText;
-            iconPictureBox2.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            iconPictureBox2.IconSize = 42;
-            iconPictureBox2.Location = new Point(16, 201);
-            iconPictureBox2.Name = "iconPictureBox2";
-            iconPictureBox2.Size = new Size(42, 42);
-            iconPictureBox2.TabIndex = 23;
-            iconPictureBox2.TabStop = false;
+            label5.AutoSize = true;
+            label5.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            label5.ForeColor = Color.FromArgb(20, 25, 25);
+            label5.Location = new Point(424, 132);
+            label5.Name = "label5";
+            label5.Size = new Size(130, 21);
+            label5.TabIndex = 27;
+            label5.Text = "Conexión a SFTP";
             // 
-            // iconPictureBox1
+            // btnFileConfig
             // 
-            iconPictureBox1.BackColor = Color.Gray;
-            iconPictureBox1.ForeColor = Color.Chartreuse;
-            iconPictureBox1.IconChar = FontAwesome.Sharp.IconChar.Check;
-            iconPictureBox1.IconColor = Color.Chartreuse;
-            iconPictureBox1.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            iconPictureBox1.IconSize = 42;
-            iconPictureBox1.Location = new Point(16, 131);
-            iconPictureBox1.Name = "iconPictureBox1";
-            iconPictureBox1.Size = new Size(42, 42);
-            iconPictureBox1.TabIndex = 22;
-            iconPictureBox1.TabStop = false;
+            btnFileConfig.BackColor = Color.Gray;
+            btnFileConfig.ForeColor = SystemColors.ControlText;
+            btnFileConfig.IconChar = FontAwesome.Sharp.IconChar.ArrowsRotate;
+            btnFileConfig.IconColor = SystemColors.ControlText;
+            btnFileConfig.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            btnFileConfig.IconSize = 42;
+            btnFileConfig.Location = new Point(50, 122);
+            btnFileConfig.Name = "btnFileConfig";
+            btnFileConfig.Size = new Size(42, 42);
+            btnFileConfig.TabIndex = 26;
+            btnFileConfig.TabStop = false;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            label4.ForeColor = Color.FromArgb(20, 25, 25);
+            label4.Location = new Point(98, 132);
+            label4.Name = "label4";
+            label4.Size = new Size(214, 21);
+            label4.TabIndex = 25;
+            label4.Text = "Existe archivo configuración";
+            // 
+            // btnUpdateList
+            // 
+            btnUpdateList.BackColor = Color.Gray;
+            btnUpdateList.ForeColor = SystemColors.ControlText;
+            btnUpdateList.IconChar = FontAwesome.Sharp.IconChar.ArrowsRotate;
+            btnUpdateList.IconColor = SystemColors.ControlText;
+            btnUpdateList.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            btnUpdateList.IconSize = 42;
+            btnUpdateList.Location = new Point(376, 213);
+            btnUpdateList.Name = "btnUpdateList";
+            btnUpdateList.Size = new Size(42, 42);
+            btnUpdateList.TabIndex = 24;
+            btnUpdateList.TabStop = false;
+            // 
+            // btnInternetConnection
+            // 
+            btnInternetConnection.BackColor = Color.Gray;
+            btnInternetConnection.ForeColor = SystemColors.ControlText;
+            btnInternetConnection.IconChar = FontAwesome.Sharp.IconChar.ArrowsRotate;
+            btnInternetConnection.IconColor = SystemColors.ControlText;
+            btnInternetConnection.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            btnInternetConnection.IconSize = 42;
+            btnInternetConnection.Location = new Point(50, 304);
+            btnInternetConnection.Name = "btnInternetConnection";
+            btnInternetConnection.Size = new Size(42, 42);
+            btnInternetConnection.TabIndex = 23;
+            btnInternetConnection.TabStop = false;
+            // 
+            // btnConfigOk
+            // 
+            btnConfigOk.BackColor = Color.Gray;
+            btnConfigOk.ForeColor = SystemColors.ControlText;
+            btnConfigOk.IconChar = FontAwesome.Sharp.IconChar.ArrowsRotate;
+            btnConfigOk.IconColor = SystemColors.ControlText;
+            btnConfigOk.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            btnConfigOk.IconSize = 42;
+            btnConfigOk.Location = new Point(50, 213);
+            btnConfigOk.Name = "btnConfigOk";
+            btnConfigOk.Size = new Size(42, 42);
+            btnConfigOk.TabIndex = 22;
+            btnConfigOk.TabStop = false;
             // 
             // label3
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
             label3.ForeColor = Color.FromArgb(20, 25, 25);
-            label3.Location = new Point(64, 282);
+            label3.Location = new Point(424, 223);
             label3.Name = "label3";
             label3.Size = new Size(127, 21);
             label3.TabIndex = 21;
@@ -199,7 +245,7 @@
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
             label2.ForeColor = Color.FromArgb(20, 25, 25);
-            label2.Location = new Point(64, 212);
+            label2.Location = new Point(98, 313);
             label2.Name = "label2";
             label2.Size = new Size(153, 21);
             label2.TabIndex = 20;
@@ -210,11 +256,11 @@
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
             label1.ForeColor = Color.FromArgb(20, 25, 25);
-            label1.Location = new Point(64, 141);
+            label1.Location = new Point(98, 223);
             label1.Name = "label1";
-            label1.Size = new Size(178, 21);
+            label1.Size = new Size(186, 21);
             label1.TabIndex = 19;
-            label1.Text = "Configuración correcta";
+            label1.Text = "Configuración completa";
             // 
             // panel3
             // 
@@ -243,12 +289,15 @@
             Name = "MainUI";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Subir información";
+            Load += MainUI_Load;
             panel1.ResumeLayout(false);
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)iconPictureBox3).EndInit();
-            ((System.ComponentModel.ISupportInitialize)iconPictureBox2).EndInit();
-            ((System.ComponentModel.ISupportInitialize)iconPictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)btnSftpConnection).EndInit();
+            ((System.ComponentModel.ISupportInitialize)btnFileConfig).EndInit();
+            ((System.ComponentModel.ISupportInitialize)btnUpdateList).EndInit();
+            ((System.ComponentModel.ISupportInitialize)btnInternetConnection).EndInit();
+            ((System.ComponentModel.ISupportInitialize)btnConfigOk).EndInit();
             panel3.ResumeLayout(false);
             ResumeLayout(false);
         }
@@ -258,14 +307,17 @@
         private FontAwesome.Sharp.IconButton btnStartTransfer;
         private FontAwesome.Sharp.IconButton btnConfig;
         private Panel panel1;
-        private Label lblEstadoTransferencia;
         private Panel panel2;
         private Label label1;
         private Label label3;
         private Label label2;
-        private FontAwesome.Sharp.IconPictureBox iconPictureBox1;
-        private FontAwesome.Sharp.IconPictureBox iconPictureBox3;
-        private FontAwesome.Sharp.IconPictureBox iconPictureBox2;
+        private FontAwesome.Sharp.IconPictureBox btnConfigOk;
+        private FontAwesome.Sharp.IconPictureBox btnUpdateList;
+        private FontAwesome.Sharp.IconPictureBox btnInternetConnection;
         private Panel panel3;
+        private FontAwesome.Sharp.IconPictureBox btnFileConfig;
+        private Label label4;
+        private FontAwesome.Sharp.IconPictureBox btnSftpConnection;
+        private Label label5;
     }
 }

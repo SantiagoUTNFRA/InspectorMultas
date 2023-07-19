@@ -1,5 +1,4 @@
-﻿using FontAwesome.Sharp;
-using InspectorMultas.Logica;
+﻿using InspectorMultas.Logica;
 using WinSCP;
 
 namespace InspectorMultas
@@ -10,10 +9,14 @@ namespace InspectorMultas
         private string password = "vialcontrol1";
         private static ConfigUI _instance = null!;
         private string directorioOrigenSeleccionado;
+        private string directorioTrabajoSeleccionado;
+        private TransferSftp _transferSftp;
 
         private ConfigUI()
         {
             InitializeComponent();
+            _transferSftp = new TransferSftp();
+            LoadConfigToUI();
         }
 
         public static ConfigUI Instance
@@ -45,7 +48,8 @@ namespace InspectorMultas
                 PortNumber = int.Parse(txtPortNumber.Text),
                 SshHostKeyFingerprint = sshHostKeyFingerPrint,
                 RemotePath = txtRemotePath.Text,
-                DirectorioOrigen = directorioOrigenSeleccionado
+                DirectorioOrigen = directorioOrigenSeleccionado,
+                DirectorioTrabajo = directorioTrabajoSeleccionado
             };
 
             TransferSftp transferenciaFtp = new();
@@ -81,6 +85,21 @@ namespace InspectorMultas
             return true;
         }
 
+        private void LoadConfigToUI()
+        {
+            SftpConfig config = _transferSftp.LoadConfig();
+
+            txtHostName.Text = config.HostName;
+            txtUserName.Text = config.UserName;
+            password = config.Password;
+            txtPortNumber.Text = config.PortNumber.ToString();
+            sshHostKeyFingerPrint = config.SshHostKeyFingerprint;
+            txtRemotePath.Text = config.RemotePath;
+            directorioOrigenSeleccionado = config.DirectorioOrigen;
+            txtSourcePath.Text = config.DirectorioOrigen;
+            txtWorkDirectory.Text = config.DirectorioTrabajo;
+        }
+
         private void btnSourceFolder_Click(object sender, EventArgs e)
         {
             directorioOrigenSeleccionado = ObtenerDirectorioOrigen();
@@ -91,6 +110,15 @@ namespace InspectorMultas
             }
         }
 
+        private void btnWorkDirectory_Click(object sender, EventArgs e)
+        {
+            directorioTrabajoSeleccionado = ObtenerDirectorioOrigen();
+
+            if (directorioTrabajoSeleccionado != null)
+            {
+                txtWorkDirectory.Text = directorioTrabajoSeleccionado;
+            }
+        }
 
         private string ObtenerDirectorioOrigen()
         {
@@ -134,5 +162,7 @@ namespace InspectorMultas
         {
             btnSourceFolder.IconSize = 25;
         }
+
+        
     }
 }

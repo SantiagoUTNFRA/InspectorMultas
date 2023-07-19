@@ -191,7 +191,7 @@
             panel2.Dock = DockStyle.Top;
             panel2.Location = new Point(100, 0);
             panel2.Name = "panel2";
-            panel2.Size = new Size(835, 50);
+            panel2.Size = new Size(835, 54);
             panel2.TabIndex = 23;
             // 
             // ProgressUI
