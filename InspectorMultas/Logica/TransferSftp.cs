@@ -185,19 +185,40 @@ namespace InspectorMultas.Logica
                     var oldFilenameComponents = Path.GetFileNameWithoutExtension(file).Split('_');
 
                     // Get the numeric part from the first component
-                    string id = Regex.Match(oldFilenameComponents[0], @"\d+").Value;
+                    string oldId = Regex.Match(oldFilenameComponents[0], @"\d+").Value;
+
+                    // Convert the old ID to the new format
+                    string newId;
+                    try
+                    {
+                        newId = ConvertId(int.Parse(oldId));
+                    }
+                    catch (FormatException)
+                    {
+                        Console.WriteLine($"Error: Unable to convert ID '{oldId}' to an integer.");
+                        continue;  // Skip this file
+                    }
 
                     // Form the new filename
-                    var newFilename = $"{id}_{oldFilenameComponents[3]}_A_T000.mp4";
+                    var newFilename = $"{newId}_{oldFilenameComponents[3]}_A_T000.mp4";
                     var destinationFile = Path.Combine(workDirectory, newFilename);
 
                     // Copy the file to the working directory
-                    File.Copy(file, destinationFile);
+                    File.Copy(file, destinationFile)    ;
                 }
             }
         }
 
+        string ConvertId(int id)
+        {
+            const string base36Chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
+            id = id - 1;
 
+            int firstDigit = id / 36;
+            int secondDigit = id % 36;
+
+            return "X" + base36Chars[firstDigit] + base36Chars[secondDigit];
+        }
     }
 }

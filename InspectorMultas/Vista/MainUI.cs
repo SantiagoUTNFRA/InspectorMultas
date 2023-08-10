@@ -16,10 +16,12 @@ namespace InspectorMultas
 
         private void MainUI_Load(object sender, EventArgs e)
         {
-            btnFileConfig.IconChar = FontAwesome.Sharp.IconChar.ArrowsRotate;
-            btnConfigOk.IconChar = FontAwesome.Sharp.IconChar.ArrowsRotate;
-            btnInternetConnection.IconChar = FontAwesome.Sharp.IconChar.ArrowsRotate;
-            btnSftpConnection.IconChar = FontAwesome.Sharp.IconChar.ArrowsRotate;
+            VerificarConfiguracionActivated();
+        }
+
+        private void MainUI_Activated(object sender, EventArgs e)
+        {
+            VerificarConfiguracionActivated();
         }
 
         public static MainUI Instance
@@ -148,6 +150,54 @@ namespace InspectorMultas
             }
         }
 
+        private void VerificarConfiguracionActivated()
+        {
+            // Verificar que exista configuracion
+            if (File.Exists(TransferSftp.ConfigFilePath))
+            {
+                btnFileConfig.IconChar = FontAwesome.Sharp.IconChar.ExclamationTriangle;
+
+                // Cargar configuración
+                SftpConfig config = LoadConfig();
+                
+                // Verificar que los valores de configuración no sean nulos o vacíos
+                if (string.IsNullOrWhiteSpace(config.HostName) || string.IsNullOrWhiteSpace(config.UserName) ||
+                    string.IsNullOrWhiteSpace(config.Password) || string.IsNullOrWhiteSpace(config.SshHostKeyFingerprint) ||
+                    string.IsNullOrWhiteSpace(config.RemotePath) || string.IsNullOrWhiteSpace(config.DirectorioOrigen))
+                {
+                    btnConfigOk.IconChar = FontAwesome.Sharp.IconChar.ExclamationTriangle;
+                }
+                else
+                {
+                    btnConfigOk.IconChar = FontAwesome.Sharp.IconChar.Check;
+                }
+
+                // Verificar la conectividad al servidor SFTP
+                if (!VerificarConectividadSftp(config))
+                {
+                    btnSftpConnection.IconChar = FontAwesome.Sharp.IconChar.ExclamationTriangle;
+                }
+                else
+                {
+                    btnSftpConnection.IconChar = FontAwesome.Sharp.IconChar.Check;
+                }
+            }
+            else
+            {
+                btnFileConfig.IconChar = FontAwesome.Sharp.IconChar.Check;
+            }
+
+            // Verificar la conexión a Internet
+            if (!NetworkInterface.GetIsNetworkAvailable())
+            {
+                btnInternetConnection.IconChar = FontAwesome.Sharp.IconChar.ExclamationTriangle;
+            }
+            else
+            {
+                btnInternetConnection.IconChar = FontAwesome.Sharp.IconChar.Check;
+            }
+
+        }
 
         private void btnStartTransfer_MouseEnter(object sender, EventArgs e)
         {
